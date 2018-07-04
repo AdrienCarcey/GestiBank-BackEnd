@@ -12,8 +12,4 @@ public class DemandeChequier extends DemandeClient {
 	public DemandeChequier(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
 		super(idDemande, dateDemande, dateTraitement, statut);
 	}
-
-	public DemandeChequier(int idClient) {
-		super(idClient);
-	}
 }

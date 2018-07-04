@@ -3,8 +3,8 @@ package com.cama.model;
 public class Documents {
 	
 	//Attributes
-	String pieceIdentite;
-	String justificatifDomicile;
+	private String pieceIdentite;
+	private String justificatifDomicile;
 	
 	//Constructors
 	public Documents() {

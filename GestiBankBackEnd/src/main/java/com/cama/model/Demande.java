@@ -5,10 +5,10 @@ import java.util.Date;
 public abstract class Demande {
 	
 	//Attributes
-	int idDemande;
-	Date dateDemande;
-	Date dateTraitement;
-	String statut;
+	private int idDemande;
+	private Date dateDemande;
+	private Date dateTraitement;
+	private String statut;
 	
 	//Constructors
 	public Demande() {

@@ -5,10 +5,10 @@ import java.util.Date;
 public abstract class OperationBancaire {
 
 	//Attributes
-	int idOperation;
-	String libelleOperation;
-	double montantOperation;
-	Date dateOperation;
+	private int idOperation;
+	private String libelleOperation;
+	private double montantOperation;
+	private Date dateOperation;
 	
 	//Constructors
 	public OperationBancaire() {

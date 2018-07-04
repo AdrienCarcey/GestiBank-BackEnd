@@ -5,10 +5,10 @@ import java.util.Date;
 public class Identite {
 	
 	//Attributes
-	String titreCivilite;
-	String nom;
-	String prenom;
-	Date dateNaissance;
+	private String titreCivilite;
+	private String nom;
+	private String prenom;
+	private Date dateNaissance;
 	
 	//Constructors
 	public Identite() {

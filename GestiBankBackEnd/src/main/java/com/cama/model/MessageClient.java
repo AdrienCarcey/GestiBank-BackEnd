@@ -5,26 +5,19 @@ import java.util.Date;
 public class MessageClient extends Message {
 	
 	//Attributes
-	int idClient;
+	private int idClient;
 	
 	//Constructors
 	public MessageClient() {
 		super();
 	}
-
-	public MessageClient(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
-		super(idDemande, dateDemande, dateTraitement, statut);
-	}
-
-	public MessageClient(String sujet, String message) {
-		super(sujet, message);
-	}
-
-	public MessageClient(int idClient) {
-		super();
+	
+	public MessageClient(int idDemande, Date dateDemande, Date dateTraitement, String statut, String sujet,
+			String message, int idClient) {
+		super(idDemande, dateDemande, dateTraitement, statut, sujet, message);
 		this.idClient = idClient;
 	}
-	
+
 	//Getters & Setters
 	public int getIdClient() {
 		return idClient;

@@ -5,26 +5,19 @@ import java.util.Date;
 public class MessagePublic extends Message {
 	
 	//Attributes
-	String titreCivilite;
-	String nom;
-	String prenom;
-	String email;
+	private String titreCivilite;
+	private String nom;
+	private String prenom;
+	private String email;
 	
 	//Constructors
 	public MessagePublic() {
 		super();
 	}
 	
-	public MessagePublic(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
-		super(idDemande, dateDemande, dateTraitement, statut);
-	}
-	
-	public MessagePublic(String sujet, String message) {
-		super(sujet, message);
-	}
-	
-	public MessagePublic(String titreCivilite, String nom, String prenom, String email) {
-		super();
+	public MessagePublic(int idDemande, Date dateDemande, Date dateTraitement, String statut, String sujet,
+			String message, String titreCivilite, String nom, String prenom, String email) {
+		super(idDemande, dateDemande, dateTraitement, statut, sujet, message);
 		this.titreCivilite = titreCivilite;
 		this.nom = nom;
 		this.prenom = prenom;

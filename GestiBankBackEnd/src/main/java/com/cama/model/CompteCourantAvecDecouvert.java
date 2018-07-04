@@ -5,8 +5,8 @@ import java.util.List;
 public class CompteCourantAvecDecouvert extends Compte {
 	
 	//Attributes
-	double entreeMensuelle;
-	double montantDecouvert;
+	private double entreeMensuelle;
+	private double montantDecouvert;
 	
 	//Constructors
 	public CompteCourantAvecDecouvert() {
@@ -14,16 +14,12 @@ public class CompteCourantAvecDecouvert extends Compte {
 	}
 	
 	public CompteCourantAvecDecouvert(int idCompte, Boolean statut, double solde,
-			List<OperationBancaire> operationsbancaires) {
+			List<OperationBancaire> operationsbancaires, double entreeMensuelle, double montantDecouvert) {
 		super(idCompte, statut, solde, operationsbancaires);
-	}
-	
-	public CompteCourantAvecDecouvert(double entreeMensuelle, double montantDecouvert) {
-		super();
 		this.entreeMensuelle = entreeMensuelle;
 		this.montantDecouvert = montantDecouvert;
 	}
-	
+
 	//Getters & Setters
 	public double getEntreeMensuelle() {
 		return entreeMensuelle;

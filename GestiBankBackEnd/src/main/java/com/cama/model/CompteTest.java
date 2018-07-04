@@ -5,10 +5,10 @@ import java.util.Date;
 public class CompteTest {
 	
 	//Attributes
-	int rib;
-	String description;
-	Date dateCreation;
-	int solde;
+	private int rib;
+	private String description;
+	private Date dateCreation;
+	private int solde;
 	
 	//Constructors
 	public CompteTest() {

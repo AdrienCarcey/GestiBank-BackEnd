@@ -3,11 +3,11 @@ package com.cama.model;
 public abstract class Utilisateur {
 	
 	//Attributes
-	int idUtilisateur;
-	String nomUtilisateur;
-	String motDePasse;
-	Identite identite;
-	Contact contact;
+	private int idUtilisateur;
+	private String nomUtilisateur;
+	private String motDePasse;
+	private Identite identite;
+	private Contact contact;
 	
 	//Constructors
 	public Utilisateur() {

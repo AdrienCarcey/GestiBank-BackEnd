@@ -3,12 +3,12 @@ package com.cama.model;
 public class Adresse {
 
 	//Attributes
-	int numeroVoie;
-	String libelleVoie;
-	String complementAdresse;
-	int codePostal;
-	String ville;
-	String pays;
+	private int numeroVoie;
+	private String libelleVoie;
+	private String complementAdresse;
+	private int codePostal;
+	private String ville;
+	private String pays;
 	
 	//Constructors
 	public Adresse() {

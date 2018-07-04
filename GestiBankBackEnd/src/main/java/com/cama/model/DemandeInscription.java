@@ -5,19 +5,15 @@ import java.util.Date;
 public class DemandeInscription extends Demande {
 	
 	//Attributes
-	Client client;
+	private Client client;
 	
 	//Constructors
 	public DemandeInscription() {
 		super();
 	}
-
-	public DemandeInscription(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
+	
+	public DemandeInscription(int idDemande, Date dateDemande, Date dateTraitement, String statut, Client client) {
 		super(idDemande, dateDemande, dateTraitement, statut);
-	}
-
-	public DemandeInscription(Client client) {
-		super();
 		this.client = client;
 	}
 	

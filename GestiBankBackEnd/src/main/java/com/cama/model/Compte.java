@@ -5,10 +5,10 @@ import java.util.List;
 public abstract class Compte {
 	
 	//Attributes
-	int idCompte;
-	Boolean statut;
-	double solde;
-	List<OperationBancaire> operationsbancaires;
+	private int idCompte;
+	private Boolean statut;
+	private double solde;
+	private List<OperationBancaire> operationsbancaires;
 	
 	//Constructors
 	public Compte() {

@@ -12,8 +12,4 @@ public class DemandeRIB extends DemandeClient {
 	public DemandeRIB(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
 		super(idDemande, dateDemande, dateTraitement, statut);
 	}
-
-	public DemandeRIB(int idClient) {
-		super(idClient);
-	}	
 }

@@ -5,25 +5,19 @@ import java.util.Date;
 public abstract class DemandeCompte extends DemandeClient {
 
 	//Attributes
-	int idCompte;
-	Compte Compte;
+	private int idCompte;
+	private Compte Compte;
 	
 	//Constructors
 	public DemandeCompte() {
 		super();
 	}
-
-	public DemandeCompte(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
+	
+	public DemandeCompte(int idDemande, Date dateDemande, Date dateTraitement, String statut, int idCompte,
+			com.cama.model.Compte compte) {
 		super(idDemande, dateDemande, dateTraitement, statut);
-	}
-
-	public DemandeCompte(int idClient) {
-		super(idClient);
-	}
-
-	public DemandeCompte(int idCompte, Compte compte) {
-		super();
 		this.idCompte = idCompte;
+		Compte = compte;
 	}
 	
 	//Getters & Setters

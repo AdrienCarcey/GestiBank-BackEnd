@@ -3,8 +3,8 @@ package com.cama.model;
 public class SituationFamiliale {
 	
 	//Attributes
-	String situationMatrimoniale;
-	int nombreEnfants;
+	private String situationMatrimoniale;
+	private int nombreEnfants;
 	
 	//Constructors
 	public SituationFamiliale() {

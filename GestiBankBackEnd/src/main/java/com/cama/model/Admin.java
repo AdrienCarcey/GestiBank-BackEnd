@@ -1,28 +1,28 @@
 package com.cama.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Admin extends Utilisateur {
 	
 	//Attributes
-	Date dateDebutContrat;
-	Date dateFinContrat;
+	private Date dateDebutContrat;
+	private Date dateFinContrat;
+	private List<Conseiller> conseillers;
 	
 	//Constructors
 	public Admin() {
 		super();
 	}
 	
-	public Admin(int idUtilisateur, String nomUtilisateur, String motDePasse, Identite identite, Contact contact) {
+	public Admin(int idUtilisateur, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+			Date dateDebutContrat, Date dateFinContrat, List<Conseiller> conseillers) {
 		super(idUtilisateur, nomUtilisateur, motDePasse, identite, contact);
-	}
-	
-	public Admin(Date dateDebutContrat, Date dateFinContrat) {
-		super();
 		this.dateDebutContrat = dateDebutContrat;
 		this.dateFinContrat = dateFinContrat;
+		this.conseillers = conseillers;
 	}
-	
+
 	//Getters & Setters
 	public Date getDateDebutContrat() {
 		return dateDebutContrat;
@@ -38,5 +38,13 @@ public class Admin extends Utilisateur {
 	
 	public void setDateFinContrat(Date dateFinContrat) {
 		this.dateFinContrat = dateFinContrat;
-	}	
+	}
+
+	public List<Conseiller> getConseillers() {
+		return conseillers;
+	}
+
+	public void setConseillers(List<Conseiller> conseillers) {
+		this.conseillers = conseillers;
+	}
 }

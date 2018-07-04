@@ -5,22 +5,19 @@ import java.util.List;
 public class CompteRemunerateur extends Compte {
 	
 	//Attributes
-	double tauxRenumeration;
+	private double tauxRenumeration;
 	
 	//Constructors
 	public CompteRemunerateur() {
 		super();
 	}
-
-	public CompteRemunerateur(int idCompte, Boolean statut, double solde, List<OperationBancaire> operationsbancaires) {
+	
+	public CompteRemunerateur(int idCompte, Boolean statut, double solde, List<OperationBancaire> operationsbancaires,
+			double tauxRenumeration) {
 		super(idCompte, statut, solde, operationsbancaires);
-	}
-
-	public CompteRemunerateur(double tauxRenumeration) {
-		super();
 		this.tauxRenumeration = tauxRenumeration;
 	}
-	
+
 	//Getters & Setters
 	public double getTauxRenumeration() {
 		return tauxRenumeration;

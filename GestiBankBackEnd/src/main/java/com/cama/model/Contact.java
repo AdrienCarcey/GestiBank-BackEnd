@@ -3,9 +3,9 @@ package com.cama.model;
 public class Contact {
 	
 	//Attributes
-	String email;
-	String telephone;
-	Adresse adresse;
+	private String email;
+	private String telephone;
+	private Adresse adresse;
 	
 	//Constructors
 	public Contact() {

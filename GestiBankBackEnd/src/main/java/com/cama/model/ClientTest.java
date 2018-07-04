@@ -6,13 +6,13 @@ import java.util.List;
 public class ClientTest {
 	
 	//Attributes
-	int id;
-	String firstName;
-	String lastName;
-	String email;
-	String mobil;
-	Date dateOfBirth;
-	List<CompteTest> comptes;
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String mobil;
+	private Date dateOfBirth;
+	private List<CompteTest> comptes;
 	
 	//Constructors
 	public ClientTest() {
