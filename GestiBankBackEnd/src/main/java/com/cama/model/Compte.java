@@ -1,58 +1,58 @@
 package com.cama.model;
 
-import java.util.Date;
+import java.util.List;
 
-public class Compte {
+public abstract class Compte {
 	
 	//Attributes
-	private int rib;
-	private String description;
-	private Date dateCreation;
-	private int solde;
+	int idCompte;
+	Boolean statut;
+	double solde;
+	List<OperationBancaire> operationsbancaires;
 	
 	//Constructors
 	public Compte() {
 		super();
 	}
-
-	public Compte(int rib, String description, Date dateCreation, int solde) {
+	
+	public Compte(int idCompte, Boolean statut, double solde, List<OperationBancaire> operationsbancaires) {
 		super();
-		this.rib = rib;
-		this.description = description;
-		this.dateCreation = dateCreation;
+		this.idCompte = idCompte;
+		this.statut = statut;
 		this.solde = solde;
+		this.operationsbancaires = operationsbancaires;
 	}
 	
 	//Getters & Setters
-	public int getRib() {
-		return rib;
+	public int getIdCompte() {
+		return idCompte;
 	}
-
-	public void setRib(int rib) {
-		this.rib = rib;
+	
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
 	}
-
-	public String getDescription() {
-		return description;
+	
+	public Boolean getStatut() {
+		return statut;
 	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	
+	public void setStatut(Boolean statut) {
+		this.statut = statut;
 	}
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-	public int getSolde() {
+	
+	public double getSolde() {
 		return solde;
 	}
-
-	public void setSolde(int solde) {
+	
+	public void setSolde(double solde) {
 		this.solde = solde;
+	}
+	
+	public List<OperationBancaire> getOperationsbancaires() {
+		return operationsbancaires;
+	}
+	
+	public void setOperationsbancaires(List<OperationBancaire> operationsbancaires) {
+		this.operationsbancaires = operationsbancaires;
 	}
 }

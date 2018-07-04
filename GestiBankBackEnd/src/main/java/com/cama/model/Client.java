@@ -3,87 +3,71 @@ package com.cama.model;
 import java.util.Date;
 import java.util.List;
 
-public class Client {
+public class Client extends Utilisateur {
 	
 	//Attributes
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String mobile;
-	private Date dateOfBirth;
-	private List<Compte> comptes;
-		
+	Date dateOuvertureCompte;
+	Date dateFermetureCompte;
+	SituationFamiliale situationFamiliale;
+	Documents documents;
+	List<Compte> comptes;
+	
 	//Constructors
 	public Client() {
 		super();
 	}
-
-	public Client(Long id, String firstName, String lastName, String email, String mobile, List<Compte> comptes) {
+	
+	public Client(int idUtilisateur, String nomUtilisateur, String motDePasse, Identite identite, Contact contact) {
+		super(idUtilisateur, nomUtilisateur, motDePasse, identite, contact);
+	}
+	
+	public Client(Date dateOuvertureCompte, Date dateFermetureCompte, SituationFamiliale situationFamiliale,
+			Documents documents, List<Compte> comptes) {
 		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.mobile = mobile;
-		this.dateOfBirth = new Date();
+		this.dateOuvertureCompte = dateOuvertureCompte;
+		this.dateFermetureCompte = dateFermetureCompte;
+		this.situationFamiliale = situationFamiliale;
+		this.documents = documents;
 		this.comptes = comptes;
 	}
 	
 	//Getters & Setters
-	public Long getId() {
-		return id;
+	public Date getDateOuvertureCompte() {
+		return dateOuvertureCompte;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	
+	public void setDateOuvertureCompte(Date dateOuvertureCompte) {
+		this.dateOuvertureCompte = dateOuvertureCompte;
 	}
-
-	public String getFirstName() {
-		return firstName;
+	
+	public Date getDateFermetureCompte() {
+		return dateFermetureCompte;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	
+	public void setDateFermetureCompte(Date dateFermetureCompte) {
+		this.dateFermetureCompte = dateFermetureCompte;
 	}
-
-	public String getLastName() {
-		return lastName;
+	
+	public SituationFamiliale getSituationFamiliale() {
+		return situationFamiliale;
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	
+	public void setSituationFamiliale(SituationFamiliale situationFamiliale) {
+		this.situationFamiliale = situationFamiliale;
 	}
-
-	public String getEmail() {
-		return email;
+	
+	public Documents getDocuments() {
+		return documents;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	
+	public void setDocuments(Documents documents) {
+		this.documents = documents;
 	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
+	
 	public List<Compte> getComptes() {
 		return comptes;
 	}
-
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
-	}
+	}	
 }

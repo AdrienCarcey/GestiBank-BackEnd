@@ -1,4 +1,4 @@
-package com.cama.config;
+package com.cama.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
