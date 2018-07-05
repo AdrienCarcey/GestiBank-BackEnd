@@ -25,8 +25,14 @@ public class ClientControllerTest {
 	}
 	
 	@GetMapping("/clientsTest")
-	public List<ClientTest> getClients() {
-		return clientDAO.list();
+	public ResponseEntity<List<ClientTest>> getClients() {
+		List<ClientTest> clients = clientDAO.list();
+		
+		if(clients == null) {
+			return new ResponseEntity<List<ClientTest>>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<List<ClientTest>>(clients, HttpStatus.OK);
 	}
 	
 	@GetMapping("/clientsTest/{id}")
@@ -41,30 +47,30 @@ public class ClientControllerTest {
 	}
 	
 	@PostMapping("/clientsTest")
-	public ResponseEntity<ClientTest> createClient(@RequestBody ClientTest client) {
+	public ResponseEntity<Boolean> createClient(@RequestBody ClientTest client) {
 		clientDAO.create(client);
 		
-		return new ResponseEntity<ClientTest>(client, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/clientsTest/{id}")
-	public ResponseEntity<Integer> deleteClient(@PathVariable("id") int id) {
+	public ResponseEntity<Boolean> deleteClient(@PathVariable("id") int id) {
 		
 		if(clientDAO.delete(id) == null) {
-			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Integer>(id, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 	
 	@PutMapping("/clientsTest/{id}")
-	public ResponseEntity<ClientTest> updateClient(@PathVariable("id") int id, @RequestBody ClientTest client) {
+	public ResponseEntity<Boolean> updateClient(@PathVariable("id") int id, @RequestBody ClientTest client) {
 		client = clientDAO.update(id, client);
 		
 		if(client == null) {
-			return new ResponseEntity<ClientTest>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<ClientTest>(client, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

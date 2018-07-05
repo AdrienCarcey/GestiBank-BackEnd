@@ -12,9 +12,9 @@ public interface ConseillerController {
 	
 	ResponseEntity<Conseiller> findConseillerById(int id);
 	
-	ResponseEntity<Conseiller> createConseiller(Conseiller conseiller);
+	ResponseEntity<Boolean> createConseiller(Conseiller conseiller);
 	
-	ResponseEntity<Integer> deleteConseillerById(int id);
+	ResponseEntity<Boolean> deleteConseillerById(int id);
 	
-	ResponseEntity<Conseiller> updateConseillerById(int id, Conseiller conseiller);
+	ResponseEntity<Boolean> updateConseillerById(int id, Conseiller conseiller);
 }

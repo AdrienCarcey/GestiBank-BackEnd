@@ -41,35 +41,23 @@ public class ConseillerDAOImpl_1 implements ConseillerDAO {
 	}
 
 	@Override
-	public Conseiller createConseiller(Conseiller conseiller) {
+	public void createConseiller(Conseiller conseiller) {
 		conseiller.setIdUtilisateur(conseillers.size());
 		conseillers.add(conseiller);
-		return conseiller;
-		
 	}
 
 	@Override
-	public Integer deleteConseillerById(int id) {
-		for(Conseiller c : conseillers) {
-			if(c.getIdUtilisateur()== id) {
-				conseillers.remove(c);
-				return id;
-			}
-		}
-		
-		return null;
+	public void deleteConseiller(Conseiller conseiller) {
+		conseillers.remove(conseiller);
 	}
 
 	@Override
-	public Conseiller updateConseillerById(int id, Conseiller conseiller) {
+	public void updateConseillerById(int id, Conseiller conseiller) {
 		for(Conseiller c : conseillers) {
 			if(c.getIdUtilisateur() == id) {
 				conseillers.remove(c);
 				conseillers.add(conseiller);
-				return conseiller;
 			}
 		}
-		
-		return null;
 	}
 }

@@ -27,6 +27,10 @@ public class ConseillerControllerImpl_1 implements ConseillerController {
 	public ResponseEntity<List<Conseiller>> findAllConseiller() {
 		List<Conseiller> conseillers = conseillerDAO.findAllConseiller();
 		
+		if(conseillers == null) {
+			return new ResponseEntity<List<Conseiller>>(HttpStatus.NOT_FOUND);
+		}
+		
 		return new ResponseEntity<List<Conseiller>>(conseillers, HttpStatus.OK);
 	}
 
@@ -44,31 +48,31 @@ public class ConseillerControllerImpl_1 implements ConseillerController {
 
 	@Override
 	@PostMapping("/conseillers")
-	public ResponseEntity<Conseiller> createConseiller(@RequestBody Conseiller conseiller) {
+	public ResponseEntity<Boolean> createConseiller(@RequestBody Conseiller conseiller) {
 		conseillerDAO.createConseiller(conseiller);
 				
-		return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 	@Override
 	@DeleteMapping("/conseillers/{id}")
-	public ResponseEntity<Integer> deleteConseillerById(@PathVariable("id") int id) {
-		if(conseillerDAO.deleteConseillerById(id) == null) {
-			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Boolean> deleteConseillerById(@PathVariable("id") int id) {
+		if(conseillerDAO.findConseillerById(id) == null) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Integer>(id, HttpStatus.OK);
+		conseillerDAO.deleteConseiller(conseillerDAO.findConseillerById(id));
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 	@Override
 	@PutMapping("/conseillers/{id}")
-	public ResponseEntity<Conseiller> updateConseillerById(@PathVariable("id")int id, @RequestBody Conseiller conseiller) {
-		conseiller = conseillerDAO.updateConseillerById(id, conseiller);
-		
-		if(conseiller == null) {
-			return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Boolean> updateConseillerById(@PathVariable("id")int id, @RequestBody Conseiller conseiller) {
+		if(conseillerDAO.findConseillerById(id) == null) {
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
+		conseillerDAO.updateConseillerById(id, conseiller);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

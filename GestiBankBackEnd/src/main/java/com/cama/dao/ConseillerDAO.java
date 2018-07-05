@@ -10,9 +10,9 @@ public interface ConseillerDAO {
 	
 	Conseiller findConseillerById(int id);
 	
-	Conseiller createConseiller(Conseiller conseiller);
+	void createConseiller(Conseiller conseiller);
 	
-	Integer deleteConseillerById(int id);
+	void deleteConseiller(Conseiller conseiller);
 	
-	Conseiller updateConseillerById(int id, Conseiller conseiller);
+	void updateConseillerById(int id, Conseiller conseiller);
 }
