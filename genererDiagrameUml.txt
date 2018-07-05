@@ -1,0 +1,4 @@
+Pour générer un diagramme UML à partir des classes Java sous eclipse:
+	- Installer le Software ObjectAid : http://www.objectaid.com/installation ,
+	- New --> Sequence Diagram,
+	- Faire glisser dans la fenêtre les classes que l'on veut représenter.
