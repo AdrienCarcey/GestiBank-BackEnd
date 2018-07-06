@@ -1,22 +1,36 @@
 package com.cama.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class ClientTest {
 	
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String mobil;
 	private Date dateOfBirth;
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	private List<CompteTest> comptes;
 	
 	//Constructors
 	public ClientTest() {
 		super();
+		this.comptes = new ArrayList<CompteTest>();
 	}
 	
 	public ClientTest(int id, String firstName, String lastName, String email, String mobil, Date dateOfBirth,

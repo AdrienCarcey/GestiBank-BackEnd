@@ -2,75 +2,19 @@ package com.cama.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.cama.dao.ClientDaoTest;
 import com.cama.model.ClientTest;
 
-@RestController
-public class ClientControllerTest {
+public interface ClientControllerTest {
 	
-	private ClientDaoTest clientDAO;
+	ResponseEntity<List<ClientTest>> findAllClients();
 	
-	public ClientControllerTest() {
-		this.clientDAO = new ClientDaoTest();
-	}
+	ResponseEntity<ClientTest> findClientById(int id);
 	
-	@GetMapping("/clientsTest")
-	public ResponseEntity<List<ClientTest>> getClients() {
-		List<ClientTest> clients = clientDAO.list();
-		
-		if(clients == null) {
-			return new ResponseEntity<List<ClientTest>>(HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<List<ClientTest>>(clients, HttpStatus.OK);
-	}
+	ResponseEntity<Boolean> createClient(ClientTest client);
 	
-	@GetMapping("/clientsTest/{id}")
-	public ResponseEntity<ClientTest> getClient(@PathVariable("id") int id) {
-		ClientTest client = clientDAO.get(id);
-		
-		if(client == null) {
-			return new ResponseEntity<ClientTest>(HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<ClientTest>(client, HttpStatus.OK);
-	}
+	ResponseEntity<Boolean> deleteClientById(int id);
 	
-	@PostMapping("/clientsTest")
-	public ResponseEntity<Boolean> createClient(@RequestBody ClientTest client) {
-		clientDAO.create(client);
-		
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/clientsTest/{id}")
-	public ResponseEntity<Boolean> deleteClient(@PathVariable("id") int id) {
-		
-		if(clientDAO.delete(id) == null) {
-			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	}
-	
-	@PutMapping("/clientsTest/{id}")
-	public ResponseEntity<Boolean> updateClient(@PathVariable("id") int id, @RequestBody ClientTest client) {
-		client = clientDAO.update(id, client);
-		
-		if(client == null) {
-			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	}
+	ResponseEntity<Boolean> updateClientById(int id, ClientTest client);
 }

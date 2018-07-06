@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cama.model.Conseiller;
 
 @Repository("conseillerDAO")
-public class ConseillerDAOImpl_1 implements ConseillerDAO {
+public class ConseillerDao_Impl1 implements ConseillerDao {
 	
 	//Fake DataBase
 	private static List<Conseiller> conseillers;
@@ -19,13 +19,13 @@ public class ConseillerDAOImpl_1 implements ConseillerDAO {
 	}
 	
 	//Constructor
-	public ConseillerDAOImpl_1() {
+	public ConseillerDao_Impl1() {
 		super();
 	}
 	
 	//Methods
 	@Override
-	public List<Conseiller> findAllConseiller() {
+	public List<Conseiller> findAllConseillers() {
 		return conseillers;
 	}
 
@@ -52,12 +52,7 @@ public class ConseillerDAOImpl_1 implements ConseillerDAO {
 	}
 
 	@Override
-	public void updateConseillerById(int id, Conseiller conseiller) {
-		for(Conseiller c : conseillers) {
-			if(c.getIdUtilisateur() == id) {
-				conseillers.remove(c);
-				conseillers.add(conseiller);
-			}
-		}
+	public void updateConseiller(Conseiller conseiller) {
+		conseillers.add(conseiller);
 	}
 }

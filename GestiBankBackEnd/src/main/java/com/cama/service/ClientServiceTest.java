@@ -1,10 +1,10 @@
-package com.cama.dao;
+package com.cama.service;
 
 import java.util.List;
 
 import com.cama.model.ClientTest;
 
-public interface ClientDaoTest {
+public interface ClientServiceTest {
 	
 	List<ClientTest> findAllClients();
 	

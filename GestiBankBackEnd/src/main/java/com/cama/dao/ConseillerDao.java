@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.cama.model.Conseiller;
 
-public interface ConseillerDAO {
+public interface ConseillerDao {
 	
-	List<Conseiller> findAllConseiller();
+	List<Conseiller> findAllConseillers();
 	
 	Conseiller findConseillerById(int id);
 	
@@ -14,5 +14,5 @@ public interface ConseillerDAO {
 	
 	void deleteConseiller(Conseiller conseiller);
 	
-	void updateConseillerById(int id, Conseiller conseiller);
+	void updateConseiller(Conseiller conseiller);
 }

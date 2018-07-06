@@ -11,8 +11,7 @@
 	<packaging>war</packaging>
 
 	<name>GestiBankBackEnd Maven Webapp</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+	<url>http://localhost:9090/GestiBankBackEnd</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,9 +19,12 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<springframework.version>4.3.1.RELEASE</springframework.version>
 		<jackson.version>2.7.5</jackson.version>
+		<hibernate.version>4.3.6.Final</hibernate.version>
+  		<mysql.version>5.1.31</mysql.version>
 	</properties>
 
 	<dependencies>
+		<!-- Library JUnit (Test) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -36,23 +38,45 @@
 			<version>${springframework.version}</version>
 		</dependency>
 		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-orm</artifactId>
+  			<version>${springframework.version}</version>
+  		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<!-- Library Web -->
+		<!-- Library Web (Connexion Http) -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Library Hibernate -->
+	  	<dependency>
+	  		<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-core</artifactId>
+	  		<version>${hibernate.version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-entitymanager</artifactId>
+	  		<version>${hibernate.version}</version>
+	  	</dependency>
+	  	<!-- Library MySQL -->
+	  	<dependency>
+	  		<groupId>mysql</groupId>
+	  		<artifactId>mysql-connector-java</artifactId>
+	  		<version>${mysql.version}</version>
+	  	</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>GestiBankBackEnd</finalName>
-		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
-				defaults (may be moved to parent pom) -->
+		<pluginManagement>
+		<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 			<plugins>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>

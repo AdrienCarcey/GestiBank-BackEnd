@@ -8,7 +8,7 @@ import com.cama.model.Conseiller;
 
 public interface ConseillerController {
 	
-	ResponseEntity<List<Conseiller>> findAllConseiller();
+	ResponseEntity<List<Conseiller>> findAllConseillers();
 	
 	ResponseEntity<Conseiller> findConseillerById(int id);
 	

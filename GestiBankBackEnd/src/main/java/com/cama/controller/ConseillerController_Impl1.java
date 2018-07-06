@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cama.dao.ConseillerDAO;
+import com.cama.dao.ConseillerDao;
 import com.cama.model.Conseiller;
 
 @RestController
-public class ConseillerControllerImpl_1 implements ConseillerController {
+public class ConseillerController_Impl1 implements ConseillerController {
 	
 	@Autowired
-	private ConseillerDAO conseillerDAO;
+	private ConseillerDao conseillerDAO;
 	
 	@Override
 	@GetMapping("/conseillers")
-	public ResponseEntity<List<Conseiller>> findAllConseiller() {
-		List<Conseiller> conseillers = conseillerDAO.findAllConseiller();
+	public ResponseEntity<List<Conseiller>> findAllConseillers() {
+		List<Conseiller> conseillers = conseillerDAO.findAllConseillers();
 		
 		if(conseillers == null) {
 			return new ResponseEntity<List<Conseiller>>(HttpStatus.NOT_FOUND);
@@ -72,7 +72,7 @@ public class ConseillerControllerImpl_1 implements ConseillerController {
 			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		conseillerDAO.updateConseillerById(id, conseiller);
+		conseillerDAO.updateConseiller(conseillerDAO.findConseillerById(id));
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }
