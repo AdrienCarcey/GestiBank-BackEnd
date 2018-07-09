@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("messagePublic")
 public class MessagePublic extends Message {
 	
 	//Attributes
@@ -15,15 +20,15 @@ public class MessagePublic extends Message {
 		super();
 	}
 	
-	public MessagePublic(int idDemande, Date dateDemande, Date dateTraitement, String statut, String sujet,
-			String message, String titreCivilite, String nom, String prenom, String email) {
-		super(idDemande, dateDemande, dateTraitement, statut, sujet, message);
+	public MessagePublic(Date dateDemande, Date dateTraitement, String statut, String sujet, String message,
+			String titreCivilite, String nom, String prenom, String email) {
+		super(dateDemande, dateTraitement, statut, sujet, message);
 		this.titreCivilite = titreCivilite;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 	}
-	
+
 	//Getters & Setters
 	public String getTitreCivilite() {
 		return titreCivilite;

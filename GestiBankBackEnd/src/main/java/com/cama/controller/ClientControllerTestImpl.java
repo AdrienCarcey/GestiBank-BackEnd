@@ -17,31 +17,27 @@ import com.cama.model.ClientTest;
 import com.cama.service.ClientServiceTest;
 
 @RestController
-public class ClientControllerTest_Impl1 implements ClientControllerTest {
+public class ClientControllerTestImpl implements ClientControllerTest {
 	
 	@Autowired
 	private ClientServiceTest clientServiceTest;
 	
 	@GetMapping("/clientsTest")
 	public ResponseEntity<List<ClientTest>> findAllClients() {
-		List<ClientTest> clients = clientServiceTest.findAllClients();
-		
-		if(clients == null) {
+		if(clientServiceTest.findAllClients() == null) {
 			return new ResponseEntity<List<ClientTest>>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<List<ClientTest>>(clients, HttpStatus.OK);
+		return new ResponseEntity<List<ClientTest>>(clientServiceTest.findAllClients(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/clientsTest/{id}")
 	public ResponseEntity<ClientTest> findClientById(@PathVariable("id") int id) {
-		ClientTest client = clientServiceTest.findClientById(id);
-		
-		if(client == null) {
+		if(clientServiceTest.findClientById(id) == null) {
 			return new ResponseEntity<ClientTest>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<ClientTest>(client, HttpStatus.OK);
+		return new ResponseEntity<ClientTest>(clientServiceTest.findClientById(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("/clientsTest")
@@ -67,7 +63,7 @@ public class ClientControllerTest_Impl1 implements ClientControllerTest {
 			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 		}
 		
-		clientServiceTest.updateClient(clientServiceTest.findClientById(id));
+		clientServiceTest.updateClient(client);
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("demandeOuvertureCompte")
 public class DemandeOuvertureCompte extends DemandeCompte {
 	
 	//Constructors
@@ -9,8 +14,8 @@ public class DemandeOuvertureCompte extends DemandeCompte {
 		super();
 	}
 
-	public DemandeOuvertureCompte(int idDemande, Date dateDemande, Date dateTraitement, String statut, int idCompte,
+	public DemandeOuvertureCompte(Date dateDemande, Date dateTraitement, String statut, int idCompte,
 			com.cama.model.Compte compte) {
-		super(idDemande, dateDemande, dateTraitement, statut, idCompte, compte);
+		super(dateDemande, dateTraitement, statut, idCompte, compte);
 	}
 }

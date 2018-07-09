@@ -2,9 +2,18 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Identite {
 	
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int idIdentite;
 	private String titreCivilite;
 	private String nom;
 	private String prenom;
@@ -24,6 +33,14 @@ public class Identite {
 	}
 	
 	//Getters & Setters
+	public int getIdIdentite() {
+		return idIdentite;
+	}
+
+	public void setIdIdentite(int idIdentite) {
+		this.idIdentite = idIdentite;
+	}
+	
 	public String getTitreCivilite() {
 		return titreCivilite;
 	}

@@ -5,7 +5,6 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 public abstract class AbstractDao<PK extends Serializable, T> {
 	
@@ -27,7 +26,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 		return (T) entityManager.find(persistentClass, key);
 	}
 	
-	protected void persist(T entity) {
+	protected void save(T entity) {
 		entityManager.persist(entity);
 	}
 	

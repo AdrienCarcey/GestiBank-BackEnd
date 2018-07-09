@@ -2,24 +2,33 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
+
+@Entity
+@DiscriminatorValue("demandeCompte")
 public abstract class DemandeCompte extends DemandeClient {
 
 	//Attributes
 	private int idCompte;
-	private Compte Compte;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Compte compte;
 	
 	//Constructors
 	public DemandeCompte() {
 		super();
 	}
 	
-	public DemandeCompte(int idDemande, Date dateDemande, Date dateTraitement, String statut, int idCompte,
+	public DemandeCompte(Date dateDemande, Date dateTraitement, String statut, int idCompte,
 			com.cama.model.Compte compte) {
-		super(idDemande, dateDemande, dateTraitement, statut);
+		super(dateDemande, dateTraitement, statut);
 		this.idCompte = idCompte;
-		Compte = compte;
+		this.compte = compte;
 	}
-	
+
 	//Getters & Setters
 	public int getIdCompte() {
 		return idCompte;
@@ -30,10 +39,10 @@ public abstract class DemandeCompte extends DemandeClient {
 	}
 
 	public Compte getCompte() {
-		return Compte;
+		return compte;
 	}
 
 	public void setCompte(Compte compte) {
-		Compte = compte;
+		this.compte = compte;
 	}
 }

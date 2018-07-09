@@ -1,33 +1,47 @@
 package com.cama.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
+@DiscriminatorValue("client")
 public class Client extends Utilisateur {
 	
 	//Attributes
 	private Date dateOuvertureCompte;
 	private Date dateFermetureCompte;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private SituationFamiliale situationFamiliale;
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Documents documents;
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	private List<Compte> comptes;
-	private List<DemandeClient> demandes;
 	
 	//Constructors
 	public Client() {
 		super();
+		this.situationFamiliale = new SituationFamiliale();
+		this.documents = new Documents();
+		this.comptes = new ArrayList<Compte>();
 	}
-	
-	public Client(int idUtilisateur, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+
+	public Client(String nomUtilisateur, String motDePasse, Identite identite, Contact contact, List<Demande> demandes,
 			Date dateOuvertureCompte, Date dateFermetureCompte, SituationFamiliale situationFamiliale,
-			Documents documents, List<Compte> comptes, List<DemandeClient> demandes) {
-		super(idUtilisateur, nomUtilisateur, motDePasse, identite, contact);
+			Documents documents, List<Compte> comptes) {
+		super(nomUtilisateur, motDePasse, identite, contact, demandes);
 		this.dateOuvertureCompte = dateOuvertureCompte;
 		this.dateFermetureCompte = dateFermetureCompte;
 		this.situationFamiliale = situationFamiliale;
 		this.documents = documents;
 		this.comptes = comptes;
-		this.demandes = demandes;
 	}
 
 	//Getters & Setters
@@ -69,12 +83,4 @@ public class Client extends Utilisateur {
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
 	}
-
-	public List<DemandeClient> getDemandes() {
-		return demandes;
-	}
-
-	public void setDemandes(List<DemandeClient> demandes) {
-		this.demandes = demandes;
-	}	
 }

@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("operationCredit")
 public class OperationCredit extends OperationBancaire {
 	
 	//Constructors
@@ -9,7 +14,7 @@ public class OperationCredit extends OperationBancaire {
 		super();
 	}
 
-	public OperationCredit(int idOperation, String libelleOperation, double montantOperation, Date dateOperation) {
-		super(idOperation, libelleOperation, montantOperation, dateOperation);
+	public OperationCredit(String libelleOperation, double montantOperation, Date dateOperation) {
+		super(libelleOperation, montantOperation, dateOperation);
 	}
 }

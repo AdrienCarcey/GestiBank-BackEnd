@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("demandeChequier")
 public class DemandeChequier extends DemandeClient {
 	
 	//Constructors
@@ -9,7 +14,7 @@ public class DemandeChequier extends DemandeClient {
 		super();
 	}
 
-	public DemandeChequier(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
-		super(idDemande, dateDemande, dateTraitement, statut);
+	public DemandeChequier(Date dateDemande, Date dateTraitement, String statut) {
+		super(dateDemande, dateTraitement, statut);
 	}
 }

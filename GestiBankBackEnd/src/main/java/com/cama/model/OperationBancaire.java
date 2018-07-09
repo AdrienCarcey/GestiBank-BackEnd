@@ -2,9 +2,25 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="heritage", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue("operationBancaire")
 public abstract class OperationBancaire {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idOperation;
 	private String libelleOperation;
 	private double montantOperation;
@@ -15,14 +31,13 @@ public abstract class OperationBancaire {
 		super();
 	}
 	
-	public OperationBancaire(int idOperation, String libelleOperation, double montantOperation, Date dateOperation) {
+	public OperationBancaire(String libelleOperation, double montantOperation, Date dateOperation) {
 		super();
-		this.idOperation = idOperation;
 		this.libelleOperation = libelleOperation;
 		this.montantOperation = montantOperation;
 		this.dateOperation = dateOperation;
 	}
-	
+
 	//Getters & Setters
 	public int getIdOperation() {
 		return idOperation;

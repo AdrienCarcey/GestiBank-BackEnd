@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("demandeRIB")
 public class DemandeRIB extends DemandeClient {
 	
 	//Constructors
@@ -9,7 +14,7 @@ public class DemandeRIB extends DemandeClient {
 		super();
 	}
 
-	public DemandeRIB(int idDemande, Date dateDemande, Date dateTraitement, String statut) {
-		super(idDemande, dateDemande, dateTraitement, statut);
+	public DemandeRIB(Date dateDemande, Date dateTraitement, String statut) {
+		super(dateDemande, dateTraitement, statut);
 	}
 }

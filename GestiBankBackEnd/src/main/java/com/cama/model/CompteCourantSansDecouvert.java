@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("compteCourantSansDecouvert")
 public class CompteCourantSansDecouvert extends Compte {
 
 	//Attributes
@@ -11,10 +16,9 @@ public class CompteCourantSansDecouvert extends Compte {
 	public CompteCourantSansDecouvert() {
 		super();
 	}
-	
-	public CompteCourantSansDecouvert(int idCompte, Boolean statut, double solde,
-			List<OperationBancaire> operationsbancaires, String rib) {
-		super(idCompte, statut, solde, operationsbancaires);
+
+	public CompteCourantSansDecouvert(Boolean statut, List<OperationBancaire> operationsbancaires, String rib) {
+		super(statut, operationsbancaires);
 		this.rib = rib;
 	}
 

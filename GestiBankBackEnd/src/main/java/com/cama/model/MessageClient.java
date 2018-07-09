@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("messageClient")
 public class MessageClient extends Message {
 	
 	//Attributes
@@ -11,10 +16,10 @@ public class MessageClient extends Message {
 	public MessageClient() {
 		super();
 	}
-	
-	public MessageClient(int idDemande, Date dateDemande, Date dateTraitement, String statut, String sujet,
-			String message, int idClient) {
-		super(idDemande, dateDemande, dateTraitement, statut, sujet, message);
+
+	public MessageClient(Date dateDemande, Date dateTraitement, String statut, String sujet, String message,
+			int idClient) {
+		super(dateDemande, dateTraitement, statut, sujet, message);
 		this.idClient = idClient;
 	}
 

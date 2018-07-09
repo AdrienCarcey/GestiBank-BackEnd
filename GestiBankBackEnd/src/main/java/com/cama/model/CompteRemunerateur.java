@@ -2,6 +2,11 @@ package com.cama.model;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("compteRemunerateur")
 public class CompteRemunerateur extends Compte {
 	
 	//Attributes
@@ -11,10 +16,9 @@ public class CompteRemunerateur extends Compte {
 	public CompteRemunerateur() {
 		super();
 	}
-	
-	public CompteRemunerateur(int idCompte, Boolean statut, double solde, List<OperationBancaire> operationsbancaires,
-			double tauxRenumeration) {
-		super(idCompte, statut, solde, operationsbancaires);
+
+	public CompteRemunerateur(Boolean statut, List<OperationBancaire> operationsbancaires, double tauxRenumeration) {
+		super(statut, operationsbancaires);
 		this.tauxRenumeration = tauxRenumeration;
 	}
 

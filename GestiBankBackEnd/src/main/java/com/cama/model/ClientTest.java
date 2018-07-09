@@ -18,11 +18,11 @@ public class ClientTest {
 	//Attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int idClient;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String mobil;
+	private String mobile;
 	private Date dateOfBirth;
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	private List<CompteTest> comptes;
@@ -33,25 +33,24 @@ public class ClientTest {
 		this.comptes = new ArrayList<CompteTest>();
 	}
 	
-	public ClientTest(int id, String firstName, String lastName, String email, String mobil, Date dateOfBirth,
+	public ClientTest(String firstName, String lastName, String email, String mobile, Date dateOfBirth,
 			List<CompteTest> comptes) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.mobil = mobil;
+		this.mobile = mobile;
 		this.dateOfBirth = dateOfBirth;
 		this.comptes = comptes;
 	}
 	
 	//Getters & Setters
-	public long getId() {
-		return id;
+	public long getIdClient() {
+		return idClient;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idClient) {
+		this.idClient = idClient;
 	}
 	
 	public String getFirstName() {
@@ -78,12 +77,12 @@ public class ClientTest {
 		this.email = email;
 	}
 	
-	public String getMobil() {
-		return mobil;
+	public String getMobile() {
+		return mobile;
 	}
 	
-	public void setMobil(String mobil) {
-		this.mobil = mobil;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	
 	public Date getDateOfBirth() {

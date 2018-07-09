@@ -1,8 +1,17 @@
 package com.cama.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Adresse {
 
 	//Attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int idAdresse;
 	private int numeroVoie;
 	private String libelleVoie;
 	private String complementAdresse;
@@ -25,8 +34,16 @@ public class Adresse {
 		this.ville = ville;
 		this.pays = pays;
 	}
-	
+
 	//Getters & Setters
+	public int getIdAdresse() {
+		return idAdresse;
+	}
+
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
+	}
+	
 	public int getNumeroVoie() {
 		return numeroVoie;
 	}

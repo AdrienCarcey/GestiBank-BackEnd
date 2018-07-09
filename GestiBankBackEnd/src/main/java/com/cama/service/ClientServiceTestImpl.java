@@ -9,7 +9,7 @@ import com.cama.dao.ClientDaoTest;
 import com.cama.model.ClientTest;
 
 @Service("clientServiceTest")
-public class ClientServiceTest_Impl1 implements ClientServiceTest {
+public class ClientServiceTestImpl implements ClientServiceTest {
 	
 	@Autowired
 	private ClientDaoTest clientDAOTest;

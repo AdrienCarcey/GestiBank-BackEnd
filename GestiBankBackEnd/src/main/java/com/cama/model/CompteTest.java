@@ -13,7 +13,7 @@ public class CompteTest {
 	//Attributes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int rib;
+	private int idCompte;
 	private String description;
 	private Date dateCreation;
 	private int solde;
@@ -23,21 +23,20 @@ public class CompteTest {
 		super();
 	}
 	
-	public CompteTest(int rib, String description, Date dateCreation, int solde) {
+	public CompteTest(String description, Date dateCreation, int solde) {
 		super();
-		this.rib = rib;
 		this.description = description;
 		this.dateCreation = dateCreation;
 		this.solde = solde;
 	}
 	
 	//Getters & Setters
-	public int getRib() {
-		return rib;
+	public int getIdCompte() {
+		return idCompte;
 	}
 	
-	public void setRib(int rib) {
-		this.rib = rib;
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
 	}
 	
 	public String getDescription() {
