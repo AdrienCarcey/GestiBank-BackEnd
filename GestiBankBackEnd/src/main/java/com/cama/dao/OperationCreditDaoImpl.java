@@ -15,7 +15,7 @@ public class OperationCreditDaoImpl extends AbstractDao<Integer, OperationCredit
 	@Override
 	@Transactional
 	public List<OperationCredit> findAllOperations() {
-		String requete = "select o " + "from OperationBancaire as o " + "where o.heritage = 'operationCredit'";
+		String requete = "select o " + "from OperationCredit as o";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<OperationCredit>) query.getResultList();
 	}

@@ -15,7 +15,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 	@Override
 	@Transactional
 	public List<Client> findAllClients() {
-		String requete = "select u " + "from Utilisateur as u " + "where u.heritage = 'client'";
+		String requete = "select c " + "from Client as c";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<Client>) query.getResultList();
 	}

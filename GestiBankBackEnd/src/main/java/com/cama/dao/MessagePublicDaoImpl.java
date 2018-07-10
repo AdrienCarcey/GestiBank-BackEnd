@@ -15,7 +15,7 @@ public class MessagePublicDaoImpl extends AbstractDao<Integer, MessagePublic> im
 	@Override
 	@Transactional
 	public List<MessagePublic> findAllMessages() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'messagePublic'";
+		String requete = "select m " + "from MessagePublic as m";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<MessagePublic>) query.getResultList();
 	}

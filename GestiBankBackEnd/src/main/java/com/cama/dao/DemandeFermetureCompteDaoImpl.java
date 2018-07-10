@@ -15,7 +15,7 @@ public class DemandeFermetureCompteDaoImpl extends AbstractDao<Integer, DemandeF
 	@Override
 	@Transactional
 	public List<DemandeFermetureCompte> findAllDemandesComptes() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'demandeFermetureCompte'";
+		String requete = "select d " + "from DemandeFermetureCompte as d";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<DemandeFermetureCompte>) query.getResultList();
 	}

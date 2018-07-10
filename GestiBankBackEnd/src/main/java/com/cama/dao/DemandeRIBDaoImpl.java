@@ -16,7 +16,7 @@ public class DemandeRIBDaoImpl extends AbstractDao<Integer, DemandeRIB> implemen
 	@Override
 	@Transactional
 	public List<DemandeRIB> findAllDemandesClients() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'demandeRIB'";
+		String requete = "select d " + "from DemandeRIB as d";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<DemandeRIB>) query.getResultList();
 	}

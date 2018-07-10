@@ -1,6 +1,6 @@
 -- Table "ClientTest"
 INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `dateOfBirth`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, '1987-12-17 00:00:00', 'adrien.carcey@hotmail.fr', 'Adrien', 'Carcey', '06-11-22-33-44');
-INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `dateOfBirth`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, '1987-12-18 00:00:00', 'gregory.breche@hotmail.fr', 'Grégory', 'Brèche', '06-55-66-77-88');
+INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `dateOfBirth`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, '1987-12-18 00:00:00', 'gregory.breche@hotmail.fr', 'Gregory', 'Breche', '06-55-66-77-88');
 
 -- Table "CompteTest"
 INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `dateCreation`, `description`, `solde`) VALUES (NULL, '2018-07-06 00:00:00', 'CCP', '1000');
@@ -23,4 +23,4 @@ INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdres
 INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse_idAdresse`) VALUES (NULL, 'albert.einstein@gmail.com', '06-01-01-01-01', '1');
 
 -- Table "Utilisateur"
-INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('admin', NULL, 'admin', 'admin', NULL, NULL, '2018-07-01 00:00:00', NULL, '1', '1', NULL, NULL);
+INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('admin', NULL, 'ouvert', 'admin', 'admin', NULL, NULL, '2018-07-01 00:00:00', NULL, '1', '1', NULL, NULL);

@@ -25,10 +25,10 @@ public class Admin extends Utilisateur {
 		super();
 		this.conseillers = new ArrayList<Conseiller>();
 	}
-	
-	public Admin(String nomUtilisateur, String motDePasse, Identite identite, Contact contact, List<Demande> demandes,
-			Date dateDebutContrat, Date dateFinContrat, List<Conseiller> conseillers) {
-		super(nomUtilisateur, motDePasse, identite, contact, demandes);
+
+	public Admin(String statut, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+			List<Demande> demandes, Date dateDebutContrat, Date dateFinContrat, List<Conseiller> conseillers) {
+		super(statut, nomUtilisateur, motDePasse, identite, contact, demandes);
 		this.dateDebutContrat = dateDebutContrat;
 		this.dateFinContrat = dateFinContrat;
 		this.conseillers = conseillers;

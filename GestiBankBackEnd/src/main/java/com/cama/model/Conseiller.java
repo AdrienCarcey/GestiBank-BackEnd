@@ -27,9 +27,9 @@ public class Conseiller extends Utilisateur {
 		
 	}
 
-	public Conseiller(String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+	public Conseiller(String statut, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
 			List<Demande> demandes, Date dateDebutContrat, Date dateFinContrat, List<Client> clients) {
-		super(nomUtilisateur, motDePasse, identite, contact, demandes);
+		super(statut, nomUtilisateur, motDePasse, identite, contact, demandes);
 		this.dateDebutContrat = dateDebutContrat;
 		this.dateFinContrat = dateFinContrat;
 		this.clients = clients;

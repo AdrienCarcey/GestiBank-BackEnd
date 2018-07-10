@@ -10,6 +10,8 @@ public interface ConseillerDao {
 	
 	Conseiller findConseillerById(int id);
 	
+	Conseiller findConseillerByName(String name);
+	
 	void createConseiller(Conseiller conseiller);
 	
 	void deleteConseiller(Conseiller conseiller);

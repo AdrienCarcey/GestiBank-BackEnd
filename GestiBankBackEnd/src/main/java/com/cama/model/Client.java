@@ -33,10 +33,10 @@ public class Client extends Utilisateur {
 		this.comptes = new ArrayList<Compte>();
 	}
 
-	public Client(String nomUtilisateur, String motDePasse, Identite identite, Contact contact, List<Demande> demandes,
-			Date dateOuvertureCompte, Date dateFermetureCompte, SituationFamiliale situationFamiliale,
-			Documents documents, List<Compte> comptes) {
-		super(nomUtilisateur, motDePasse, identite, contact, demandes);
+	public Client(String statut, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+			List<Demande> demandes, Date dateOuvertureCompte, Date dateFermetureCompte,
+			SituationFamiliale situationFamiliale, Documents documents, List<Compte> comptes) {
+		super(statut, nomUtilisateur, motDePasse, identite, contact, demandes);
 		this.dateOuvertureCompte = dateOuvertureCompte;
 		this.dateFermetureCompte = dateFermetureCompte;
 		this.situationFamiliale = situationFamiliale;

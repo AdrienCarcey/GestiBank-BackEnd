@@ -15,7 +15,7 @@ public class DemandeChequierDaoImpl extends AbstractDao<Integer, DemandeChequier
 	@Override
 	@Transactional
 	public List<DemandeChequier> findAllDemandesClients() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'demandeChequier'";
+		String requete = "select d " + "from DemandeChequier as d";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<DemandeChequier>) query.getResultList();
 	}

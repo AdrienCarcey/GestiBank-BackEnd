@@ -15,7 +15,7 @@ public class CompteRemunerateurDaoImpl extends AbstractDao<Integer, CompteRemune
 	@Override
 	@Transactional
 	public List<CompteRemunerateur> findAllComptes() {
-		String requete = "select c " + "from Compte as c " + "where c.heritage = 'compteRemunerateur'";
+		String requete = "select c " + "from CompteRemunerateur as c";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<CompteRemunerateur>) query.getResultList();
 	}

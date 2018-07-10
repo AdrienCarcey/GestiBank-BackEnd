@@ -16,7 +16,7 @@ public class DemandeModificationDonneesDaoImpl extends AbstractDao<Integer, Dema
 	@Override
 	@Transactional
 	public List<DemandeModificationDonnees> findAllDemandesClients() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'demandeModificationDonnees'";
+		String requete = "select d " + "from DemandeModificationDonnees as d";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<DemandeModificationDonnees>) query.getResultList();
 	}

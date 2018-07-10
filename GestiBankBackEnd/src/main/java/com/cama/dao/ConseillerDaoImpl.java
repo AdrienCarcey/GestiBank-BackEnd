@@ -15,7 +15,7 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 	@Override
 	@Transactional
 	public List<Conseiller> findAllConseillers() {
-		String requete = "select u " + "from Utilisateur as u " + "where u.heritage = 'conseiller'";
+		String requete = "select c " + "from Conseiller as c";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<Conseiller>) query.getResultList();
 	}
@@ -25,6 +25,15 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 	public Conseiller findConseillerById(int id) {
 		return getByKey(id);
 	}
+	
+	@Override
+	@Transactional
+    public Conseiller findConseillerByName(String name) {
+        String requete = "select c " + "from Conseiller as c " + "where c.nomUtilisateur = :nomConseiller";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("nomConseiller", name);
+        return (Conseiller) query.getSingleResult();
+    }
 
 	@Override
 	@Transactional

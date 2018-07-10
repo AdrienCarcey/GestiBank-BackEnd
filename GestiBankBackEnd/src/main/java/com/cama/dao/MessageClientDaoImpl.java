@@ -15,7 +15,7 @@ public class MessageClientDaoImpl extends AbstractDao<Integer, MessageClient> im
 	@Override
 	@Transactional
 	public List<MessageClient> findAllMessages() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'messageClient'";
+		String requete = "select m " + "from MessageClient as m";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<MessageClient>) query.getResultList();
 	}

@@ -15,7 +15,7 @@ public class DemandeInscriptionDaoImpl extends AbstractDao<Integer, DemandeInscr
 	@Override
 	@Transactional
 	public List<DemandeInscription> findAllDemandesInscriptions() {
-		String requete = "select d " + "from Demande as d " + "where d.heritage = 'demandeInscription'";
+		String requete = "select d " + "from DemandeInscription as d";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<DemandeInscription>) query.getResultList();
 	}

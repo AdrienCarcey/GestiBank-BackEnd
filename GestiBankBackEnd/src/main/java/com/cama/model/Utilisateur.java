@@ -27,6 +27,7 @@ public abstract class Utilisateur {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idUtilisateur;
+	private String statut;
 	private String nomUtilisateur;
 	private String motDePasse;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -44,9 +45,10 @@ public abstract class Utilisateur {
 		this.demandes = new ArrayList<Demande>();
 	}
 
-	public Utilisateur(String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
+	public Utilisateur(String statut, String nomUtilisateur, String motDePasse, Identite identite, Contact contact,
 			List<Demande> demandes) {
 		super();
+		this.statut = statut;
 		this.nomUtilisateur = nomUtilisateur;
 		this.motDePasse = motDePasse;
 		this.identite = identite;
@@ -61,6 +63,14 @@ public abstract class Utilisateur {
 	
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
+	}
+	
+	public String getStatut() {
+		return statut;
+	}
+	
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 	
 	public String getNomUtilisateur() {

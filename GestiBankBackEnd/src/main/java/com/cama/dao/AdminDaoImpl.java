@@ -15,7 +15,7 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 	@Override
 	@Transactional
 	public List<Admin> findAllAdmins() {
-		String requete = "select u " + "from Utilisateur as u " + "where u.heritage = 'admin'";
+		String requete = "select a " + "from Admin as a";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<Admin>) query.getResultList();
 	}

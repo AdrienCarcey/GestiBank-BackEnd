@@ -15,7 +15,7 @@ public class CompteCourantAvecDecouvertDaoImpl extends AbstractDao<Integer, Comp
 	@Override
 	@Transactional
 	public List<CompteCourantAvecDecouvert> findAllComptes() {
-		String requete = "select c " + "from Compte as c " + "where c.heritage = 'compteCourantAvecDecouvert'";
+		String requete = "select c " + "from CompteCourantAvecDecouvert as c";
 		Query query = getEntityManager().createQuery(requete);
 		return (List<CompteCourantAvecDecouvert>) query.getResultList();
 	}
