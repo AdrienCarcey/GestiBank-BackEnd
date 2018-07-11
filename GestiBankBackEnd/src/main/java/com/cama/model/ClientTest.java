@@ -1,7 +1,6 @@
 package com.cama.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,7 +22,6 @@ public class ClientTest {
 	private String lastName;
 	private String email;
 	private String mobile;
-	private Date dateOfBirth;
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	private List<CompteTest> comptes;
 	
@@ -33,17 +31,15 @@ public class ClientTest {
 		this.comptes = new ArrayList<CompteTest>();
 	}
 	
-	public ClientTest(String firstName, String lastName, String email, String mobile, Date dateOfBirth,
-			List<CompteTest> comptes) {
+	public ClientTest(String firstName, String lastName, String email, String mobile, List<CompteTest> comptes) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.mobile = mobile;
-		this.dateOfBirth = dateOfBirth;
 		this.comptes = comptes;
 	}
-	
+
 	//Getters & Setters
 	public long getIdClient() {
 		return idClient;
@@ -65,7 +61,7 @@ public class ClientTest {
 		return lastName;
 	}
 	
-	public void setLastname(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	
@@ -83,14 +79,6 @@ public class ClientTest {
 	
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-	
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-	
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
 	}
 	
 	public List<CompteTest> getComptes() {

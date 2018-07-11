@@ -5,16 +5,21 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.cama.model.ClientTest;
+import com.cama.model.CompteTest;
 
 public interface ClientControllerTest {
 	
 	ResponseEntity<List<ClientTest>> findAllClients();
 	
-	ResponseEntity<ClientTest> findClientById(int id);
+	ResponseEntity<ClientTest> findClientById(int idClient);
 	
 	ResponseEntity<Boolean> createClient(ClientTest client);
 	
-	ResponseEntity<Boolean> deleteClientById(int id);
+	ResponseEntity<Boolean> deleteClientById(int idClient);
 	
-	ResponseEntity<Boolean> updateClientById(int id, ClientTest client);
+	ResponseEntity<Boolean> updateClientById(int idClient, ClientTest client);
+	
+	ResponseEntity<Boolean> createCompte(int idClient, CompteTest compte);
+	
+	ResponseEntity<Boolean> deleteCompteById(int idCompte);
 }

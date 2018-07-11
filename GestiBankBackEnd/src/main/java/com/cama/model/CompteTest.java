@@ -1,7 +1,5 @@
 package com.cama.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +13,6 @@ public class CompteTest {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idCompte;
 	private String description;
-	private Date dateCreation;
 	private int solde;
 	
 	//Constructors
@@ -23,13 +20,12 @@ public class CompteTest {
 		super();
 	}
 	
-	public CompteTest(String description, Date dateCreation, int solde) {
+	public CompteTest(String description, int solde) {
 		super();
 		this.description = description;
-		this.dateCreation = dateCreation;
 		this.solde = solde;
 	}
-	
+
 	//Getters & Setters
 	public int getIdCompte() {
 		return idCompte;
@@ -45,14 +41,6 @@ public class CompteTest {
 	
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-	
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
 	}
 	
 	public int getSolde() {

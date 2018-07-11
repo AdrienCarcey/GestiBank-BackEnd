@@ -3,16 +3,21 @@ package com.cama.service;
 import java.util.List;
 
 import com.cama.model.ClientTest;
+import com.cama.model.CompteTest;
 
 public interface ClientServiceTest {
 	
 	List<ClientTest> findAllClients();
 	
-	ClientTest findClientById(int id);
+	ClientTest findClientById(int idClient);
 	
-	void createClient(ClientTest client);
+	Boolean createClient(ClientTest client);
 
-	void deleteClient(ClientTest client);
+	Boolean deleteClientById(int idClient);
 	
-	void updateClient(ClientTest client);
+	Boolean updateClientById(int idClient, ClientTest client);
+	
+	Boolean createCompte(int idClient, CompteTest compte);
+	
+	Boolean deleteCompteById(int idCompte);
 }

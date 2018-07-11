@@ -1,11 +1,11 @@
 -- Table "ClientTest"
-INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `dateOfBirth`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, '1987-12-17 00:00:00', 'adrien.carcey@hotmail.fr', 'Adrien', 'Carcey', '06-11-22-33-44');
-INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `dateOfBirth`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, '1987-12-18 00:00:00', 'gregory.breche@hotmail.fr', 'Gregory', 'Breche', '06-55-66-77-88');
+INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, 'adrien.carcey@hotmail.fr', 'Adrien', 'Carcey', '06-11-22-33-44');
+INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, 'gregory.breche@hotmail.fr', 'Gregory', 'Breche', '06-55-66-77-88');
 
 -- Table "CompteTest"
-INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `dateCreation`, `description`, `solde`) VALUES (NULL, '2018-07-06 00:00:00', 'CCP', '1000');
-INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `dateCreation`, `description`, `solde`) VALUES (NULL, '2018-07-06 00:00:00', 'CCP', '2000');
-INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `dateCreation`, `description`, `solde`) VALUES (NULL, '2018-07-06 00:00:00', 'LA', '500');
+INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALUES (NULL, 'CCP', '1000');
+INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALUES (NULL, 'CCP', '2000');
+INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALUES (NULL, 'LA', '500');
 
 
 -- Table "ClientTest_CompteTest"
