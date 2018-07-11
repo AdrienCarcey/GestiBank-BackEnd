@@ -22,4 +22,6 @@ public interface ClientControllerTest {
 	ResponseEntity<Boolean> createCompte(int idClient, CompteTest compte);
 	
 	ResponseEntity<Boolean> deleteCompteById(int idCompte);
+	
+	ResponseEntity<Boolean> deleteCompteById(int idClient, int idCompte);
 }

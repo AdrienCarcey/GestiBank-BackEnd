@@ -23,8 +23,8 @@ public class ClientControllerTestImpl implements ClientControllerTest {
 	@Autowired
 	private ClientServiceTest clientServiceTest;
 	
-	@GetMapping("/clientsTest")
 	@Override
+	@GetMapping("/clientsTest")
 	public ResponseEntity<List<ClientTest>> findAllClients() {
 		if(clientServiceTest.findAllClients() == null) {
 			return new ResponseEntity<List<ClientTest>>(HttpStatus.NOT_FOUND);
@@ -33,9 +33,9 @@ public class ClientControllerTestImpl implements ClientControllerTest {
 		return new ResponseEntity<List<ClientTest>>(clientServiceTest.findAllClients(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/clientsTest/{id}")
 	@Override
-	public ResponseEntity<ClientTest> findClientById(@PathVariable("id") int idClient) {
+	@GetMapping("/clientsTest/{idClient}")
+	public ResponseEntity<ClientTest> findClientById(@PathVariable("idClient") int idClient) {
 		if(clientServiceTest.findClientById(idClient) == null) {
 			return new ResponseEntity<ClientTest>(HttpStatus.NOT_FOUND);
 		}
@@ -49,27 +49,33 @@ public class ClientControllerTestImpl implements ClientControllerTest {
 		return new ResponseEntity<Boolean>(clientServiceTest.createClient(client), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/clientsTest/{id}")
 	@Override
-	public ResponseEntity<Boolean> deleteClientById(@PathVariable("id") int idClient) {
+	@DeleteMapping("/clientsTest/{idClient}")
+	public ResponseEntity<Boolean> deleteClientById(@PathVariable("idClient") int idClient) {
 		return new ResponseEntity<Boolean>(clientServiceTest.deleteClientById(idClient), HttpStatus.OK);
 	}
 	
-	@PutMapping("/clientsTest/{id}")
 	@Override
-	public ResponseEntity<Boolean> updateClientById(@PathVariable("id") int idClient, @RequestBody ClientTest client) {
+	@PutMapping("/clientsTest/{idClient}")
+	public ResponseEntity<Boolean> updateClientById(@PathVariable("idClient") int idClient, @RequestBody ClientTest client) {
 		return new ResponseEntity<Boolean>(clientServiceTest.updateClientById(idClient, client), HttpStatus.OK);
 	}
-
-	@PostMapping("/clientsTest/compte/{id}")
+	
 	@Override
-	public ResponseEntity<Boolean> createCompte(@PathVariable("id") int idClient, @RequestBody CompteTest compte) {
+	@PostMapping("/clientsTest/compte/{idClient}")
+	public ResponseEntity<Boolean> createCompte(@PathVariable("idClient") int idClient, @RequestBody CompteTest compte) {
 		return new ResponseEntity<Boolean>(clientServiceTest.createCompte(idClient, compte), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/clientsTest/compte/{id}")
 	@Override
-	public ResponseEntity<Boolean> deleteCompteById(@PathVariable("id") int idCompte) {
+	@DeleteMapping("/clientsTest/compte/{idCompte}")
+	public ResponseEntity<Boolean> deleteCompteById(@PathVariable("idCompte") int idCompte) {
 		return new ResponseEntity<Boolean>(clientServiceTest.deleteCompteById(idCompte), HttpStatus.OK);
+	}
+
+	@Override
+	@DeleteMapping("/clientsTest/compte/{idClient}/{idCompte}")
+	public ResponseEntity<Boolean> deleteCompteById(@PathVariable("idClient") int idClient, @PathVariable("idCompte") int idCompte) {
+		return new ResponseEntity<Boolean>(clientServiceTest.deleteCompteById(idClient, idCompte), HttpStatus.OK);
 	}
 }

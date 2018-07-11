@@ -8,7 +8,7 @@ public interface ClientDaoTest {
 	
 	List<ClientTest> findAllClients();
 	
-	ClientTest findClientById(int id);
+	ClientTest findClientById(int idClient);
 	
 	void createClient(ClientTest client);
 

@@ -19,8 +19,8 @@ public class ClientDaoTestImpl extends AbstractDao<Integer, ClientTest> implemen
 	}
 
 	@Override
-	public ClientTest findClientById(int id) {
-		return getByKey(id);
+	public ClientTest findClientById(int idClient) {
+		return getByKey(idClient);
 	}
 
 	@Override

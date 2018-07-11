@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cama.dao.ClientDaoTest;
+import com.cama.dao.CompteDaoTest;
 import com.cama.model.ClientTest;
 import com.cama.model.CompteTest;
 
@@ -17,6 +18,8 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 	
 	@Autowired
 	private ClientDaoTest clientDAOTest;
+	@Autowired
+	private CompteDaoTest compteDAOTest;
 	
 	@Override
 	public List<ClientTest> findAllClients() {
@@ -52,11 +55,13 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 		}
 		else {
 			ClientTest clientUpdate = findClientById(idClient);
+			
 			clientUpdate.setFirstName(client.getFirstName());
 			clientUpdate.setLastName(client.getLastName());
 			clientUpdate.setEmail(client.getEmail());
 			clientUpdate.setMobile(client.getMobile());
 			clientDAOTest.updateClient(clientUpdate);
+			
 			return true;
 		}
 	}
@@ -70,12 +75,38 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 			ClientTest clientUpdate = findClientById(idClient);
 			clientUpdate.getComptes().add(compte);
 			clientDAOTest.updateClient(clientUpdate);
+			
 			return true;
 		}
 	}
 
 	@Override
 	public Boolean deleteCompteById(int idCompte) {
-		return null;
+		if(compteDAOTest.findCompteById(idCompte) == null) {
+			return false;
+		}
+		else {
+			compteDAOTest.deleteCompte(compteDAOTest.findCompteById(idCompte));
+			return true;
+		}
+	}
+
+	@Override
+	public Boolean deleteCompteById(int idClient, int idCompte) {
+		if(findClientById(idClient) == null) {
+			return false;
+		}
+		else {
+			List<CompteTest> comptes = findClientById(idClient).getComptes();
+			
+			for(CompteTest compte: comptes) {
+				if(compte.getIdCompte() == idCompte) {
+					comptes.remove(compte);
+					return true;
+				}
+			}
+			
+			return false;	
+		}
 	}
 }
