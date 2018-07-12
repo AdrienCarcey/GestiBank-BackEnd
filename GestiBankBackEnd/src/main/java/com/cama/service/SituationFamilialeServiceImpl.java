@@ -2,6 +2,8 @@ package com.cama.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.cama.dao.SituationFamilialeDao;
 import com.cama.model.SituationFamiliale;
 
 @Service("situationFamilialeService")
+@Transactional
 public class SituationFamilialeServiceImpl implements SituationFamilialeService {
 
 	@Autowired

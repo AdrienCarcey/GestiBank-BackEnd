@@ -2,6 +2,8 @@ package com.cama.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.cama.dao.IdentiteDao;
 import com.cama.model.Identite;
 
 @Service("identiteService")
+@Transactional
 public class IdentiteServiceImpl implements IdentiteService {
 
 	@Autowired

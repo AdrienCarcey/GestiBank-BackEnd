@@ -1,3 +1,5 @@
+-- 1) Base de données "Test"
+
 -- Table "ClientTest"
 INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, 'adrien.carcey@hotmail.fr', 'Adrien', 'Carcey', '06-11-22-33-44');
 INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `email`, `firstName`, `lastName`, `mobile`) VALUES (NULL, 'gregory.breche@hotmail.fr', 'Gregory', 'Breche', '06-55-66-77-88');
@@ -7,11 +9,12 @@ INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALU
 INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALUES (NULL, 'CCP', '2000');
 INSERT INTO `gestibankdb`.`comptetest` (`idCompte`, `description`, `solde`) VALUES (NULL, 'LA', '500');
 
-
 -- Table "ClientTest_CompteTest"
 INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `comptes_idCompte`) VALUES ('1', '1');
 INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `comptes_idCompte`) VALUES ('2', '2');
 INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `comptes_idCompte`) VALUES ('2', '3');
+
+-- 2) Base de données "GestiBank"
 
 -- Table "Identite"
 INSERT INTO `gestibankdb`.`Identite` (`idIdentite`, `dateNaissance`, `nom`, `prenom`, `titreCivilite`) VALUES (NULL, '1879-03-14 00:00:00', 'Einstein', 'Albert', 'Monsieur');

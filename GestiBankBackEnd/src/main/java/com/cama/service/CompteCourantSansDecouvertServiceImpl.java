@@ -2,6 +2,8 @@ package com.cama.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.cama.dao.CompteCourantSansDecouvertDao;
 import com.cama.model.CompteCourantSansDecouvert;
 
 @Service("compteCourantSansDecouvertService")
+@Transactional
 public class CompteCourantSansDecouvertServiceImpl implements CompteCourantSansDecouvertService {
 
 	@Autowired

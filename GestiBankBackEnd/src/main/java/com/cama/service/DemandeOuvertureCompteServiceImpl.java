@@ -2,6 +2,8 @@ package com.cama.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.cama.dao.DemandeOuvertureCompteDao;
 import com.cama.model.DemandeOuvertureCompte;
 
 @Service("demandeOuvertureCompteService")
+@Transactional
 public class DemandeOuvertureCompteServiceImpl implements DemandeOuvertureCompteService {
 
 	@Autowired

@@ -78,4 +78,10 @@ public class ClientControllerTestImpl implements ClientControllerTest {
 	public ResponseEntity<Boolean> deleteCompteById(@PathVariable("idClient") int idClient, @PathVariable("idCompte") int idCompte) {
 		return new ResponseEntity<Boolean>(clientServiceTest.deleteCompteById(idClient, idCompte), HttpStatus.OK);
 	}
+
+	@Override
+	@PutMapping("/clientsTest/compte/{idCompte}")
+	public ResponseEntity<Boolean> updateCompteById(@PathVariable("idCompte") int idCompte, @RequestBody CompteTest compte) {
+		return new ResponseEntity<Boolean>(clientServiceTest.updateCompteById(idCompte, compte), HttpStatus.OK);
+	}
 }

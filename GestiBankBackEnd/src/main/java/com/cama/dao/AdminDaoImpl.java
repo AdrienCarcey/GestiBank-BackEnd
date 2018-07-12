@@ -3,7 +3,6 @@ package com.cama.dao;
 import java.util.List;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,6 @@ import com.cama.model.Admin;
 public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDao {
 
 	@Override
-	@Transactional
 	public List<Admin> findAllAdmins() {
 		String requete = "select a " + "from Admin as a";
 		Query query = getEntityManager().createQuery(requete);
@@ -21,25 +19,21 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 	}
 
 	@Override
-	@Transactional
 	public Admin findAdminById(int id) {
 		return getByKey(id);
 	}
 
 	@Override
-	@Transactional
 	public void createAdmin(Admin admin) {
 		save(admin);
 	}
 
 	@Override
-	@Transactional
 	public void deleteAdmin(Admin admin) {
 		delete(getByKey((int) admin.getIdUtilisateur()));
 	}
 
 	@Override
-	@Transactional
 	public void updateAdmin(Admin admin) {
 		update(admin);
 	}

@@ -22,4 +22,6 @@ public interface ClientServiceTest {
 	Boolean deleteCompteById(int idCompte);
 	
 	Boolean deleteCompteById(int idClient, int idCompte);
+	
+	Boolean updateCompteById(int idCompte, CompteTest compte);
 }

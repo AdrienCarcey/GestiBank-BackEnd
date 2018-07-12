@@ -55,13 +55,12 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 		}
 		else {
 			ClientTest clientUpdate = findClientById(idClient);
-			
 			clientUpdate.setFirstName(client.getFirstName());
 			clientUpdate.setLastName(client.getLastName());
 			clientUpdate.setEmail(client.getEmail());
 			clientUpdate.setMobile(client.getMobile());
-			clientDAOTest.updateClient(clientUpdate);
 			
+			clientDAOTest.updateClient(clientUpdate);
 			return true;
 		}
 	}
@@ -107,6 +106,21 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 			}
 			
 			return false;	
+		}
+	}
+
+	@Override
+	public Boolean updateCompteById(int idCompte, CompteTest compte) {
+		if(compteDAOTest.findCompteById(idCompte) == null) {
+			return false;
+		}
+		else {
+			CompteTest compteUpdate = compteDAOTest.findCompteById(idCompte);
+			compteUpdate.setDescription(compte.getDescription());
+			compteUpdate.setSolde(compte.getSolde());
+			
+			compteDAOTest.updateCompte(compteUpdate);
+			return true;
 		}
 	}
 }

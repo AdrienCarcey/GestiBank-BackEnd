@@ -3,7 +3,6 @@ package com.cama.dao;
 import java.util.List;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,6 @@ import com.cama.model.DemandeInscription;
 public class DemandeInscriptionDaoImpl extends AbstractDao<Integer, DemandeInscription> implements DemandeInscriptionDao {
 
 	@Override
-	@Transactional
 	public List<DemandeInscription> findAllDemandesInscriptions() {
 		String requete = "select d " + "from DemandeInscription as d";
 		Query query = getEntityManager().createQuery(requete);
@@ -21,25 +19,21 @@ public class DemandeInscriptionDaoImpl extends AbstractDao<Integer, DemandeInscr
 	}
 
 	@Override
-	@Transactional
 	public DemandeInscription findDemandeInscriptionById(int id) {
 		return getByKey(id);
 	}
 
 	@Override
-	@Transactional
 	public void createDemandeInscription(DemandeInscription demandeInscription) {
 		save(demandeInscription);
 	}
 
 	@Override
-	@Transactional
 	public void deleteDemandeInscription(DemandeInscription demandeInscription) {
 		delete(getByKey((int) demandeInscription.getIdDemande()));
 	}
 
 	@Override
-	@Transactional
 	public void updateDemandeInscription(DemandeInscription demandeInscription) {
 		update(demandeInscription);
 	}

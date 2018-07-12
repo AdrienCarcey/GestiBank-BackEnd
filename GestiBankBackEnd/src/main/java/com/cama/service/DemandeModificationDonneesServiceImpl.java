@@ -2,6 +2,8 @@ package com.cama.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import com.cama.dao.DemandeModificationDonneesDao;
 import com.cama.model.DemandeModificationDonnees;
 
 @Service("demandeModificationDonneesService")
+@Transactional
 public class DemandeModificationDonneesServiceImpl implements DemandeModificationDonneesService {
 
 	@Autowired
