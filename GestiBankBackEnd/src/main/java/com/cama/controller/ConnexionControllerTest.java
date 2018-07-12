@@ -4,5 +4,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface ConnexionControllerTest {
 	
-	ResponseEntity<Boolean> connexion();
+	ResponseEntity<Object[]> connexion(String[] connexion);
 }
