@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,12 +16,20 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 	public List<Conseiller> findAllConseillers() {
 		String requete = "select c " + "from Conseiller as c";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<Conseiller>) query.getResultList();
+        try {
+        	return (List<Conseiller>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Conseiller findConseillerById(int id) {
-		return getByKey(id);
+        try {
+        	return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 	@Override
@@ -28,7 +37,11 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
         String requete = "select c " + "from Conseiller as c " + "where c.nomUtilisateur = :nomConseiller";
         Query query = getEntityManager().createQuery(requete);
         query.setParameter("nomConseiller", name);
-        return (Conseiller) query.getSingleResult();
+        try {
+        	return (Conseiller) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
     }
 
 	@Override

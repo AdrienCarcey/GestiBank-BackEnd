@@ -10,6 +10,8 @@ public interface ClientDao {
 	
 	Client findClientById(int id);
 	
+	Client findClientByName(String name);
+	
 	void createClient(Client client);
 
 	void deleteClient(Client client);
