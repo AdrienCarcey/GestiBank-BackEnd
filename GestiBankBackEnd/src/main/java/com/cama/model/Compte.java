@@ -61,7 +61,7 @@ public abstract class Compte {
 	}
 	
 	public double getSolde() {
-		return calculSolde();
+		return solde;
 	}
 	
 	public void setSolde(double solde) {

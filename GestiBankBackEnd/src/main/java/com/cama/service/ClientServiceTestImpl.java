@@ -55,10 +55,19 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 		}
 		else {
 			ClientTest clientUpdate = findClientById(idClient);
-			clientUpdate.setFirstName(client.getFirstName());
-			clientUpdate.setLastName(client.getLastName());
-			clientUpdate.setEmail(client.getEmail());
-			clientUpdate.setMobile(client.getMobile());
+			
+			if(client.getFirstName() != null) {
+				clientUpdate.setFirstName(client.getFirstName());
+			}
+			if(client.getLastName() != null) {
+				clientUpdate.setLastName(client.getLastName());
+			}
+			if(client.getEmail() != null) {
+				clientUpdate.setEmail(client.getEmail());
+			}
+			if(client.getMobile() != null) {
+				clientUpdate.setMobile(client.getMobile());
+			}
 			
 			clientDAOTest.updateClient(clientUpdate);
 			return true;
@@ -80,7 +89,7 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 	}
 
 	@Override
-	public Boolean deleteCompteById(int idCompte) {
+	public Boolean deleteCompteByIdCompte(int idCompte) {
 		if(compteDAOTest.findCompteById(idCompte) == null) {
 			return false;
 		}
@@ -91,7 +100,7 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 	}
 
 	@Override
-	public Boolean deleteCompteById(int idClient, int idCompte) {
+	public Boolean deleteCompteByIdClient(int idClient, int idCompte) {
 		if(findClientById(idClient) == null) {
 			return false;
 		}
@@ -116,8 +125,13 @@ public class ClientServiceTestImpl implements ClientServiceTest {
 		}
 		else {
 			CompteTest compteUpdate = compteDAOTest.findCompteById(idCompte);
-			compteUpdate.setDescription(compte.getDescription());
-			compteUpdate.setSolde(compte.getSolde());
+			
+			if(compte.getDescription() != null) {
+				compteUpdate.setDescription(compte.getDescription());
+			}
+			if(compte.getSolde() != 0) {
+				compteUpdate.setSolde(compte.getSolde());
+			}
 			
 			compteDAOTest.updateCompte(compteUpdate);
 			return true;

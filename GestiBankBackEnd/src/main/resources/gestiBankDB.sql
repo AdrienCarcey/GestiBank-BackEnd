@@ -1,4 +1,4 @@
--- 1) Base de données "Test"
+-- 1-Base de données "Test"
 
 -- Table "ClientTest"
 INSERT INTO `gestibankdb`.`clienttest` (`idClient`, `email`, `firstName`, `lastName`, `mobile`) VALUES (1, 'adrien.carcey@hotmail.fr', 'Adrien', 'Carcey', '06-11-22-33-44');
@@ -14,7 +14,9 @@ INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `compt
 INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `comptes_idCompte`) VALUES ('2', '2');
 INSERT INTO `gestibankdb`.`clienttest_comptetest` (`ClientTest_idClient`, `comptes_idCompte`) VALUES ('2', '3');
 
--- 2) Base de données "GestiBank"
+-- 2-Base de données "GestiBank"
+
+-- 2-1-Utilisateurs
 
 -- Table "Identite"
 INSERT INTO `gestibankdb`.`Identite` (`idIdentite`, `dateNaissance`, `nom`, `prenom`, `titreCivilite`) VALUES ('1', '1879-03-14 00:00:00', 'Einstein', 'Albert', 'Monsieur');
@@ -63,3 +65,19 @@ INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, 
 INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '5', 'ouvert', 'client2', 'client2', NULL, '2018-07-06 00:00:00', NULL, NULL, '5', '5', '2', '2');
 INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '6', 'ouvert', 'client3', 'client3', NULL, '2018-07-07 00:00:00', NULL, NULL, '6', '6', '3', '3');
 INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '7', 'ouvert', 'client4', 'client4', NULL, '2018-07-08 00:00:00', NULL, NULL, '7', '7', '4', '4');
+
+-- 2-2-Comptes
+
+-- Table "Operation"
+INSERT INTO `gestibankdb`.`operationbancaire` (`heritage`, `idOperation`, `dateOperation`, `libelleOperation`, `montantOperation`) VALUES ('operationCredit', '1', '2018-07-09 00:00:00', 'salaire', '2000');
+
+-- Table "Comptes"
+INSERT INTO `gestibankdb`.`operationbancaire` (`heritage`, `idOperation`, `dateOperation`, `libelleOperation`, `montantOperation`) VALUES ('', NULL, NULL, NULL, '');
+
+
+
+
+
+
+
+
