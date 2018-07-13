@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-workspace name="GestiBankSoapTest" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
-  <con:project name="ClientControllerTest">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/ClientControllerTest-soapui-project.xml</con:project>
+  <con:project name="ClientControllerTest">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/ClientControllerTest-soapui-project.xml</con:project>
+  <con:project name="ConnexionController">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/ConnexionController-soapui-project.xml</con:project>
   <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>
