@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,6 +19,7 @@ public class Admin extends Utilisateur {
 	private Date dateDebutContrat;
 	private Date dateFinContrat;
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	@JoinTable(name="Admin_Conseiller")
 	private List<Conseiller> conseillers;
 	
 	//Constructors
