@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class MessagePublicDaoImpl extends AbstractDao<Integer, MessagePublic> im
 	public List<MessagePublic> findAllMessages() {
 		String requete = "select m " + "from MessagePublic as m";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<MessagePublic>) query.getResultList();
+		try {
+			return (List<MessagePublic>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

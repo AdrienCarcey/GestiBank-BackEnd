@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class ClientDaoTestImpl extends AbstractDao<Integer, ClientTest> implemen
 	public List<ClientTest> findAllClients() {
 		String requete = "select c " + "from ClientTest as c";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<ClientTest>) query.getResultList();
+		try {
+			return (List<ClientTest>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

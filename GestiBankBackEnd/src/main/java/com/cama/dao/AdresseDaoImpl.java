@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class AdresseDaoImpl extends AbstractDao<Integer, Adresse> implements Adr
 	public List<Adresse> findAllAdresses() {
 		String requete = "select a " + "from Adresse as a";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<Adresse>) query.getResultList();
+		try {
+			return (List<Adresse>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

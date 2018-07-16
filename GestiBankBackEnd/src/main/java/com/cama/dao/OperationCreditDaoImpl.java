@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class OperationCreditDaoImpl extends AbstractDao<Integer, OperationCredit
 	public List<OperationCredit> findAllOperations() {
 		String requete = "select o " + "from OperationCredit as o";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<OperationCredit>) query.getResultList();
+		try {
+			return (List<OperationCredit>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

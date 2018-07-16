@@ -46,7 +46,7 @@ INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdres
 INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdresse`, `libelleVoie`, `numeroVoie`, `pays`, `ville`) VALUES ('8', '75008', NULL, 'Place Algebre', '48', 'France', 'Paris');
 INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdresse`, `libelleVoie`, `numeroVoie`, `pays`, `ville`) VALUES ('9', '75009', NULL, 'Faubourg du bien et du mal ', '63', 'France', 'Paris');
 
-INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdresse`, `libelleVoie`, `numeroVoie`, `pays`, `ville`) VALUES ('10', '75010', NULL, 'Plave des justes', '35', 'France', 'Paris');
+INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdresse`, `libelleVoie`, `numeroVoie`, `pays`, `ville`) VALUES ('10', '75010', NULL, 'Place des justes', '35', 'France', 'Paris');
 INSERT INTO `gestibankdb`.`Adresse` (`idAdresse`, `codePostal`, `complementAdresse`, `libelleVoie`, `numeroVoie`, `pays`, `ville`) VALUES ('11', '75011', NULL, 'Faubourg Karamazov', '5', 'France', 'Paris');
 
 -- Table "Contact"
@@ -62,6 +62,9 @@ INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse
 
 INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse_idAdresse`) VALUES ('8', 'evariste.galois@gmail.com', '06-08-08-08-08', '8');
 INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse_idAdresse`) VALUES ('9', 'baruch.spinoza@gmail.com', '06-09-09-09-09', '9');
+
+INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse_idAdresse`) VALUES ('10', 'albert.camus@gmail.com', '06-04-04-04-04', '10');
+INSERT INTO `gestibankdb`.`Contact` (`idContact`, `email`, `telephone`, `adresse_idAdresse`) VALUES ('11', 'fiodor.dostoievski@gmail.com', '06-05-05-05-05', '11');
 
 -- Table "Documents"
 INSERT INTO `gestibankdb`.`documents` (`idDocuments`, `justificatifDomicile`, `pieceIdentite`) VALUES ('1', 'justificatifDomicile1', 'pieceIdentite1');
@@ -95,8 +98,8 @@ INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, 
 INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '8', 'inscription', 'client5', 'client5', NULL, NULL, NULL, NULL, '8', '8', '5', '5');
 INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '9', 'inscription', 'client6', 'client6', NULL, NULL, NULL, NULL, '9', '9', '6', '6');
 
-INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '10', 'ouvert', 'client1', 'client1', NULL, '2018-07-05 00:00:00', NULL, NULL, '10', '4', '1', '1');
-INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '11', 'ouvert', 'client2', 'client2', NULL, '2018-07-06 00:00:00', NULL, NULL, '11', '5', '2', '2');
+INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '10', 'modification', 'client1', 'client1', NULL, '2018-07-05 00:00:00', NULL, NULL, '10', '4', '1', '1');
+INSERT INTO `Utilisateur` (`heritage`, `idUtilisateur`, `statut`, `motDePasse`, `nomUtilisateur`, `dateFermetureCompte`, `dateOuvertureCompte`, `dateDebutContrat`, `dateFinContrat`, `contact_idContact`, `identite_idIdentite`, `documents_idDocuments`, `situationFamiliale_idSituationFamiliale`) VALUES ('client', '11', 'modification', 'client2', 'client2', NULL, '2018-07-06 00:00:00', NULL, NULL, '11', '5', '2', '2');
 
 -- 2-2-Comptes
 
@@ -232,10 +235,10 @@ INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `d
 
 INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('2', '5');
 INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('2', '7');
-INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('2', '6');
+INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('2', '26');
 
 INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('3', '6');
-INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('2', '8');
+INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('3', '8');
 
 INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('4', '1');
 INSERT INTO `gestibankdb`.`utilisateur_demande` (`Utilisateur_idUtilisateur`, `demandes_idDemande`) VALUES ('4', '9');

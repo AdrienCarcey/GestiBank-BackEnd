@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class CompteRemunerateurDaoImpl extends AbstractDao<Integer, CompteRemune
 	public List<CompteRemunerateur> findAllComptes() {
 		String requete = "select c " + "from CompteRemunerateur as c";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<CompteRemunerateur>) query.getResultList();
+		try {
+			return (List<CompteRemunerateur>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

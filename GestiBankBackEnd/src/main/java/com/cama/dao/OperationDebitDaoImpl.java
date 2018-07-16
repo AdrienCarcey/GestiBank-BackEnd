@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class OperationDebitDaoImpl extends AbstractDao<Integer, OperationDebit> 
 	public List<OperationDebit> findAllOperations() {
 		String requete = "select o " + "from OperationDebit as o";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<OperationDebit>) query.getResultList();
+		try {
+			return (List<OperationDebit>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

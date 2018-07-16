@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class DemandeModificationDonneesDaoImpl extends AbstractDao<Integer, Dema
 	public List<DemandeModificationDonnees> findAllDemandesClients() {
 		String requete = "select d " + "from DemandeModificationDonnees as d";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<DemandeModificationDonnees>) query.getResultList();
+		try {
+			return (List<DemandeModificationDonnees>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

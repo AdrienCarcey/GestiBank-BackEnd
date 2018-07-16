@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class IdentiteDaoImpl extends AbstractDao<Integer, Identite> implements I
 	public List<Identite> findAllIdentites() {
 		String requete = "select i " + "from Identite as i";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<Identite>) query.getResultList();
+		try {
+			return (List<Identite>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

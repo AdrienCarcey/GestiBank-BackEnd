@@ -2,6 +2,7 @@ package com.cama.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class DocumentsDaoImpl extends AbstractDao<Integer, Documents> implements
 	public List<Documents> findAllDocuments() {
 		String requete = "select d " + "from Documents as d";
 		Query query = getEntityManager().createQuery(requete);
-		return (List<Documents>) query.getResultList();
+		try {
+			return (List<Documents>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
