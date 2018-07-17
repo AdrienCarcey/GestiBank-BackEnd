@@ -1,5 +1,6 @@
 package com.cama.controller;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,10 +94,9 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 	}
 	
 	@Override
-	@GetMapping("/conseiller/demandes")
-	public ResponseEntity<List<Demande>> findAllDemandes(int idConseiller) {
-		// TODO Auto-generated method stub
-		return null;
+	@GetMapping("/conseiller/demandes/{idConseiller}")
+	public ResponseEntity<Hashtable<String, List>> findAllDemandes(@PathVariable("idConseiller") int idConseiller) {
+		return new ResponseEntity<Hashtable<String, List>>(espaceConseillerService.findAllDemandes(idConseiller), HttpStatus.OK);
 	}
 
 	@Override

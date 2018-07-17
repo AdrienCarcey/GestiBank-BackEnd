@@ -1,6 +1,7 @@
 package com.cama.service;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,14 @@ import com.cama.model.CompteCourantAvecDecouvert;
 import com.cama.model.CompteCourantSansDecouvert;
 import com.cama.model.CompteRemunerateur;
 import com.cama.model.Demande;
+import com.cama.model.DemandeChequier;
+import com.cama.model.DemandeFermetureCompte;
+import com.cama.model.DemandeInscription;
+import com.cama.model.DemandeModificationDonnees;
+import com.cama.model.DemandeOuvertureCompte;
+import com.cama.model.DemandeRIB;
+import com.cama.model.MessageClient;
+import com.cama.model.MessagePublic;
 import com.cama.model.OperationBancaire;
 import com.cama.model.OperationDebit;
 
@@ -249,9 +258,65 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	}
 	
 	@Override
-	public List<Demande> findAllDemandes(int idConseiller) {
-		// TODO Auto-generated method stub
-		return null;
+	public Hashtable<String, List> findAllDemandes(int idConseiller) {
+		Hashtable<String, List> demandes = new Hashtable<String, List>();
+		
+		List<DemandeInscription> demandeInscription = new ArrayList<DemandeInscription>();
+		List<DemandeModificationDonnees> demandeModificationDonnees = new ArrayList<DemandeModificationDonnees>();
+		List<DemandeChequier> demandeChequier = new ArrayList<DemandeChequier>();
+		List<DemandeRIB> demandeRIB = new ArrayList<DemandeRIB>();
+		List<DemandeOuvertureCompte> demandeOuvertureCompte = new ArrayList<DemandeOuvertureCompte>();
+		List<DemandeFermetureCompte> demandeFermetureCompte = new ArrayList<DemandeFermetureCompte>();
+		List<MessagePublic> messagePublic = new ArrayList<MessagePublic>();
+		List<MessageClient> messageClient = new ArrayList<MessageClient>();
+		
+		List<Demande> demandesConseiller = conseillerDao.findConseillerById(idConseiller).getDemandes();
+		List<Demande> demandesClient = new ArrayList<Demande>();
+		
+		for(Client client: findAllClients(idConseiller)) {
+			demandesClient.addAll(client.getDemandes());
+		}
+		
+		for(Demande demande: demandesConseiller) {
+			if(demande instanceof DemandeInscription) {
+				demandeInscription.add((DemandeInscription) demande);
+			}
+			if(demande instanceof MessagePublic) {
+				messagePublic.add((MessagePublic) demande);
+			}
+		}
+		
+		for(Demande demande: demandesClient) {
+			if(demande instanceof DemandeModificationDonnees) {
+				demandeModificationDonnees.add((DemandeModificationDonnees) demande);
+			}
+			if(demande instanceof DemandeChequier) {
+				demandeChequier.add((DemandeChequier) demande);
+			}
+			if(demande instanceof DemandeRIB) {
+				demandeRIB.add((DemandeRIB) demande);
+			}
+			if(demande instanceof DemandeOuvertureCompte) {
+				demandeOuvertureCompte.add((DemandeOuvertureCompte) demande);
+			}
+			if(demande instanceof DemandeFermetureCompte) {
+				demandeFermetureCompte.add((DemandeFermetureCompte) demande);
+			}
+			if(demande instanceof MessageClient) {
+				messageClient.add((MessageClient) demande);
+			}
+		}
+		
+		demandes.put("demandeInscription", demandeInscription);
+		demandes.put("messagePublic", messagePublic);
+		demandes.put("demandeModificationDonnees", demandeModificationDonnees);
+		demandes.put("demandeChequier", demandeChequier);
+		demandes.put("demandeRIB", demandeRIB);
+		demandes.put("demandeOuvertureCompte", demandeOuvertureCompte);
+		demandes.put("demandeFermetureCompte", demandeFermetureCompte);
+		demandes.put("messageClient", messageClient);
+		
+		return demandes;		
 	}
 
 	@Override
