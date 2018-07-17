@@ -11,8 +11,11 @@ import com.cama.dao.ClientDao;
 import com.cama.dao.CompteCourantAvecDecouvertDao;
 import com.cama.dao.CompteCourantSansDecouvertDao;
 import com.cama.dao.CompteRemunerateurDao;
+import com.cama.dao.ConseillerDao;
 import com.cama.model.Client;
 import com.cama.model.Compte;
+import com.cama.model.Conseiller;
+import com.cama.model.MessageClient;
 import com.cama.model.OperationBancaire;
 
 
@@ -22,6 +25,9 @@ public class EspaceClientServiceImpl implements EspaceClientService {
 
 	@Autowired
 	ClientDao clientDao;
+	
+	@Autowired
+	ConseillerDao conseillerDao;
 	
 	@Autowired
 	CompteRemunerateurDao compteRemunerateurDao;
@@ -56,6 +62,35 @@ public class EspaceClientServiceImpl implements EspaceClientService {
 		} else {
 			return null;
 		}
+	}
+
+
+	@Override
+	public Boolean createMessageClient(MessageClient messageClient) {
+		
+		List<Conseiller> conseillers = conseillerDao.findAllConseillers();
+		
+		int idConseiller = 0;
+		for (Conseiller c:conseillers) {
+			List<Client> clients = c.getClients();
+			for (Client cl:clients) {
+				if (cl.getIdUtilisateur() == messageClient.getIdClient()) {
+					idConseiller = c.getIdUtilisateur();
+				}
+			}
+		}
+		
+		Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+		conseiller.getDemandes().add(messageClient);
+		conseillerDao.updateConseiller(conseiller);		
+		
+		return true;
+	}
+
+
+	@Override
+	public Client getClientById(int idClient) {
+		return clientDao.findClientById(idClient);
 	}
 	
 	

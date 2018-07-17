@@ -93,14 +93,19 @@ public class EspacePublicServiceImpl implements EspacePublicService {
 				hashtable.put("typeUtilisateur", "client");
 				hashtable.put("mdpValide", true);
 				hashtable.put("nomUtilisateur", client.getNomUtilisateur());
-				hashtable.put("idUtilisateur", client.getIdUtilisateur());			}			
+				hashtable.put("idUtilisateur", client.getIdUtilisateur());			
+				hashtable.put("nom", client.getIdentite().getNom());						
+				hashtable.put("prenom", client.getIdentite().getPrenom());
+			}			
 		}else if (conseiller != null) {			
 			hashtable.put("utilisateurValide", true);
 			if (conseiller.getMotDePasse().equals(mdp)) {
 				hashtable.put("typeUtilisateur", "conseiller");				
 				hashtable.put("mdpValide", true);
 				hashtable.put("nomUtilisateur", conseiller.getNomUtilisateur());
-				hashtable.put("idUtilisateur", conseiller.getIdUtilisateur());			}			
+				hashtable.put("idUtilisateur", conseiller.getIdUtilisateur());			
+				hashtable.put("nom", conseiller.getIdentite().getNom());						
+				hashtable.put("prenom", conseiller.getIdentite().getPrenom());			}			
 		} else if (admin != null) {
 			hashtable.put("utilisateurValide", true);
 			if (admin.getMotDePasse().equals(mdp)) {
@@ -108,7 +113,8 @@ public class EspacePublicServiceImpl implements EspacePublicService {
 				hashtable.put("mdpValide", true);
 				hashtable.put("nomUtilisateur", admin.getNomUtilisateur());
 				hashtable.put("idUtilisateur", admin.getIdUtilisateur());				
-			} 
+				hashtable.put("nom", admin.getIdentite().getNom());						
+				hashtable.put("prenom", admin.getIdentite().getPrenom());			} 
 		}
 		
 		return hashtable;
