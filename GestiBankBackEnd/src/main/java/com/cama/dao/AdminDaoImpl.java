@@ -37,7 +37,7 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 
 	@Override
     public Admin findAdminByName(String name) {
-        String requete = "select a " + "from Admin as a " + "where a.nomUtilisateur = :nomAdmin AND a.statut = 'ouvert'\"";
+        String requete = "select a " + "from Admin as a " + "where a.nomUtilisateur = :nomAdmin AND a.statut = 'ouvert'";
         Query query = getEntityManager().createQuery(requete);
         query.setParameter("nomAdmin", name);
         try {
