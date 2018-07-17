@@ -1,10 +1,12 @@
 package com.cama.service;
 
 import java.util.Hashtable;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cama.dao.AdminDao;
 import com.cama.dao.ClientDao;
@@ -12,19 +14,65 @@ import com.cama.dao.ConseillerDao;
 import com.cama.model.Admin;
 import com.cama.model.Client;
 import com.cama.model.Conseiller;
-import com.cama.model.Utilisateur;
+import com.cama.model.Demande;
+import com.cama.model.DemandeInscription;
+import com.cama.model.MessagePublic;
 
-@Service("connexion")
+
+@Service("espacePublicService")
 @Transactional
-public class ConnexionServiceImpl implements ConnexionService {
-
-	@Autowired
-	private ClientDao clientDao;
-	@Autowired
-	private ConseillerDao conseillerDao;
+public class EspacePublicServiceImpl implements EspacePublicService {
+	
+		
 	@Autowired
 	private AdminDao adminDao;
 	
+	@Autowired
+	private ConseillerDao conseillerDao;
+
+	@Autowired
+	private ClientDao clientDao;
+	
+
+	
+	@Override
+	public Boolean createDemandeInscription(DemandeInscription demandeInscription) {
+		Admin admin = adminDao.findAdminById(1);
+		admin.getDemandes().add(demandeInscription);
+		adminDao.updateAdmin(admin);
+		//demandeInscriptionDao.createDemandeInscription(demandeInscription);
+		return true;
+	}
+
+
+	@Override
+	public Boolean createMessagePublic(MessagePublic messagePublic) {
+		
+		List<Conseiller> conseillers = conseillerDao.findAllConseillers();
+		
+		int idConseiller = 0;
+		int nbMessageConseiller = 100000;
+		for (Conseiller c:conseillers) {
+			int nbMessage = 0;
+			List<Demande> demandes = c.getDemandes();
+			for (Demande d:demandes) {
+				if (d instanceof MessagePublic) {
+					nbMessage ++;
+				}				
+			}
+			if (nbMessage < nbMessageConseiller) {
+				idConseiller = c.getIdUtilisateur();
+				nbMessageConseiller = nbMessage;
+			}
+		}
+		
+		Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+		conseiller.getDemandes().add(messagePublic);
+		conseillerDao.updateConseiller(conseiller);
+		
+		return true;
+	}
+
 	
 	@Override
 	public Hashtable<String, Object> connexion(String[] connexion) {
