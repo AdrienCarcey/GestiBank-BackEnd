@@ -29,18 +29,18 @@ public abstract class Compte {
 	private Boolean statut;
 	private double solde;
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
-	private List<OperationBancaire> operationsbancaires;
+	private List<OperationBancaire> operationsBancaires;
 	
 	//Constructors
 	public Compte() {
 		super();
-		this.operationsbancaires = new ArrayList<OperationBancaire>();
+		this.operationsBancaires = new ArrayList<OperationBancaire>();
 	}
 	
-	public Compte(Boolean statut, List<OperationBancaire> operationsbancaires) {
+	public Compte(Boolean statut, List<OperationBancaire> operationsBancaires) {
 		super();
 		this.statut = statut;
-		this.operationsbancaires = operationsbancaires;
+		this.operationsBancaires = operationsBancaires;
 	}
 
 	//Getters & Setters
@@ -68,20 +68,20 @@ public abstract class Compte {
 		this.solde = solde;
 	}
 	
-	public List<OperationBancaire> getOperationsbancaires() {
-		return operationsbancaires;
+	public List<OperationBancaire> getOperationsBancaires() {
+		return operationsBancaires;
 	}
 	
-	public void setOperationsbancaires(List<OperationBancaire> operationsbancaires) {
-		this.operationsbancaires = operationsbancaires;
+	public void setOperationsBancaires(List<OperationBancaire> operationsBancaires) {
+		this.operationsBancaires = operationsBancaires;
 	}
 	
 	//Methods
 	public double calculSolde() {
 		double solde = 0;
 		
-		if(this.operationsbancaires.size() != 0) {
-			for(OperationBancaire operation: this.operationsbancaires) {
+		if(this.operationsBancaires.size() != 0) {
+			for(OperationBancaire operation: this.operationsBancaires) {
 				if(operation instanceof OperationCredit) {
 					solde += operation.getMontantOperation();
 				}

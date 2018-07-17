@@ -5,6 +5,7 @@ import java.util.List;
 import com.cama.model.Client;
 import com.cama.model.Compte;
 import com.cama.model.Demande;
+import com.cama.model.OperationBancaire;
 
 public interface EspaceConseillerService {
 	
@@ -23,6 +24,8 @@ public interface EspaceConseillerService {
 	Boolean openClientCompte(int idCompte);
 	
 	Boolean closeClientCompte(int idCompte);
+	
+	List<OperationBancaire> findCompteOperation (int idCompte);
 	
 	List<Demande> findAllDemandes(int idConseiller);
 	

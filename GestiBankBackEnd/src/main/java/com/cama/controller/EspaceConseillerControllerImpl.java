@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cama.model.Client;
 import com.cama.model.Compte;
 import com.cama.model.Demande;
+import com.cama.model.OperationBancaire;
 import com.cama.service.EspaceConseillerService;
 
 @RestController
@@ -83,6 +84,12 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 	@DeleteMapping("/conseiller/compte/{idCompte}")
 	public ResponseEntity<Boolean> closeClientCompte(@PathVariable("idCompte") int idCompte) {
 		return new ResponseEntity<Boolean>(espaceConseillerService.closeClientCompte(idCompte), HttpStatus.OK);
+	}
+	
+	@Override
+	@GetMapping("/conseiller/operations/{idCompte}")
+	public ResponseEntity<List<OperationBancaire>> findCompteOperation(@PathVariable("idCompte") int idCompte) {
+		return new ResponseEntity<List<OperationBancaire>>(espaceConseillerService.findCompteOperation(idCompte), HttpStatus.OK);
 	}
 	
 	@Override
