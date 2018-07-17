@@ -1,5 +1,6 @@
 package com.cama.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,8 @@ import com.cama.model.CompteCourantAvecDecouvert;
 import com.cama.model.CompteCourantSansDecouvert;
 import com.cama.model.CompteRemunerateur;
 import com.cama.model.Demande;
+import com.cama.model.OperationBancaire;
+import com.cama.model.OperationDebit;
 
 @Service("espaceConseillerService")
 @Transactional
@@ -220,6 +223,29 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public List<OperationBancaire> findCompteOperation(int idCompte) {
+		if(findClientCompte(idCompte) == null) {
+			return null;
+		}
+		
+		else {
+			List<OperationBancaire> operationsBancaires = new ArrayList<OperationBancaire>();
+			
+			for(OperationBancaire operation: findClientCompte(idCompte).getOperationsBancaires()) {
+				if(operation instanceof OperationDebit) {
+					operation.setMontantOperation(-operation.getMontantOperation());
+					operationsBancaires.add(operation);
+				}
+				else {
+					operationsBancaires.add(operation);
+				}
+			}
+			
+			return operationsBancaires;
+		}		
 	}
 	
 	@Override
