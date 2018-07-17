@@ -1,6 +1,7 @@
 package com.cama.service;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,7 +19,16 @@ import com.cama.model.Compte;
 import com.cama.model.CompteCourantAvecDecouvert;
 import com.cama.model.CompteCourantSansDecouvert;
 import com.cama.model.CompteRemunerateur;
+import com.cama.model.Conseiller;
 import com.cama.model.Demande;
+import com.cama.model.DemandeChequier;
+import com.cama.model.DemandeFermetureCompte;
+import com.cama.model.DemandeInscription;
+import com.cama.model.DemandeModificationDonnees;
+import com.cama.model.DemandeOuvertureCompte;
+import com.cama.model.DemandeRIB;
+import com.cama.model.MessageClient;
+import com.cama.model.MessagePublic;
 import com.cama.model.OperationBancaire;
 import com.cama.model.OperationDebit;
 
@@ -249,9 +259,65 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	}
 	
 	@Override
-	public List<Demande> findAllDemandes(int idConseiller) {
-		// TODO Auto-generated method stub
-		return null;
+	public Hashtable<String, List> findAllDemandes(int idConseiller) {
+		Hashtable<String, List> demandes = new Hashtable<String, List>();
+		
+		List<DemandeInscription> demandeInscription = new ArrayList<DemandeInscription>();
+		List<DemandeModificationDonnees> demandeModificationDonnees = new ArrayList<DemandeModificationDonnees>();
+		List<DemandeChequier> demandeChequier = new ArrayList<DemandeChequier>();
+		List<DemandeRIB> demandeRIB = new ArrayList<DemandeRIB>();
+		List<DemandeOuvertureCompte> demandeOuvertureCompte = new ArrayList<DemandeOuvertureCompte>();
+		List<DemandeFermetureCompte> demandeFermetureCompte = new ArrayList<DemandeFermetureCompte>();
+		List<MessagePublic> messagePublic = new ArrayList<MessagePublic>();
+		List<MessageClient> messageClient = new ArrayList<MessageClient>();
+		
+		List<Demande> demandesConseiller = conseillerDao.findConseillerById(idConseiller).getDemandes();
+		List<Demande> demandesClient = new ArrayList<Demande>();
+		
+		for(Client client: findAllClients(idConseiller)) {
+			demandesClient.addAll(client.getDemandes());
+		}
+		
+		for(Demande demande: demandesConseiller) {
+			if(demande instanceof DemandeInscription) {
+				demandeInscription.add((DemandeInscription) demande);
+			}
+			if(demande instanceof MessagePublic) {
+				messagePublic.add((MessagePublic) demande);
+			}
+		}
+		
+		for(Demande demande: demandesClient) {
+			if(demande instanceof DemandeModificationDonnees) {
+				demandeModificationDonnees.add((DemandeModificationDonnees) demande);
+			}
+			if(demande instanceof DemandeChequier) {
+				demandeChequier.add((DemandeChequier) demande);
+			}
+			if(demande instanceof DemandeRIB) {
+				demandeRIB.add((DemandeRIB) demande);
+			}
+			if(demande instanceof DemandeOuvertureCompte) {
+				demandeOuvertureCompte.add((DemandeOuvertureCompte) demande);
+			}
+			if(demande instanceof DemandeFermetureCompte) {
+				demandeFermetureCompte.add((DemandeFermetureCompte) demande);
+			}
+			if(demande instanceof MessageClient) {
+				messageClient.add((MessageClient) demande);
+			}
+		}
+		
+		demandes.put("demandeInscription", demandeInscription);
+		demandes.put("messagePublic", messagePublic);
+		demandes.put("demandeModificationDonnees", demandeModificationDonnees);
+		demandes.put("demandeChequier", demandeChequier);
+		demandes.put("demandeRIB", demandeRIB);
+		demandes.put("demandeOuvertureCompte", demandeOuvertureCompte);
+		demandes.put("demandeFermetureCompte", demandeFermetureCompte);
+		demandes.put("messageClient", messageClient);
+		
+		return demandes;		
 	}
 
 	@Override
@@ -264,5 +330,39 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	public Boolean refuseDemande(int idDemande) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Hashtable<String, String> dashboard(int idConseiller) {
+		Hashtable<String, String> dashboard = new Hashtable<String, String>();
+		
+		Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+		int nombreClients = 0;
+		int nombreDemandes = 0;
+		
+		for(Client client: conseiller.getClients()) {
+			if(client.getStatut().equals("ouvert")) {
+				nombreClients = nombreClients+1;	
+			}
+			
+			for(Demande demande: client.getDemandes()) {
+				if(demande.getDateTraitement() == null) {
+					nombreDemandes = nombreDemandes+1;	
+				}
+			}
+		}
+		
+		for(Demande demande: conseiller.getDemandes()) {
+			if(demande.getDateTraitement() == null) {
+				nombreDemandes = nombreDemandes+1;	
+			}
+		}
+		
+		dashboard.put("nom", conseiller.getIdentite().getNom());
+		dashboard.put("prenom", conseiller.getIdentite().getPrenom());
+		dashboard.put("nombreClients", Integer.toString(nombreClients));
+		dashboard.put("nombreDemandes", Integer.toString(nombreDemandes));
+		
+		return dashboard;
 	}
 }

@@ -1,5 +1,6 @@
 package com.cama.controller;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,11 @@ public interface EspaceConseillerController {
 	
 	ResponseEntity<List<OperationBancaire>> findCompteOperation (int idCompte);
 	
-	ResponseEntity<List<Demande>> findAllDemandes(int idConseiller);
+	ResponseEntity<Hashtable<String, List>> findAllDemandes(int idConseiller);
 	
 	ResponseEntity<Boolean> validateDemande(int idDemande, String typeDemande);
 	
 	ResponseEntity<Boolean> refuseDemande(int idDemande);
+	
+	ResponseEntity<Hashtable<String, String>> dashboard (int idConseiller);
 }

@@ -1,10 +1,10 @@
 package com.cama.service;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import com.cama.model.Client;
 import com.cama.model.Compte;
-import com.cama.model.Demande;
 import com.cama.model.OperationBancaire;
 
 public interface EspaceConseillerService {
@@ -27,9 +27,11 @@ public interface EspaceConseillerService {
 	
 	List<OperationBancaire> findCompteOperation (int idCompte);
 	
-	List<Demande> findAllDemandes(int idConseiller);
+	Hashtable<String, List> findAllDemandes(int idConseiller);
 	
 	Boolean validateDemande(int idDemande, String typeDemande);
 	
 	Boolean refuseDemande(int idDemande);
+	
+	Hashtable<String, String> dashboard (int idConseiller);
 }
