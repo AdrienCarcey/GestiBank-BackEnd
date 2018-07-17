@@ -38,7 +38,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 
 	@Override
 	public Client findClientByName(String name) {
-        String requete = "select c " + "from Client as c " + "where c.nomUtilisateur = :nomClient";
+        String requete = "select c " + "from Client as c " + "where c.nomUtilisateur = :nomClient AND c.statut = 'ouvert'";
         Query query = getEntityManager().createQuery(requete);
         query.setParameter("nomClient", name);
         try {
