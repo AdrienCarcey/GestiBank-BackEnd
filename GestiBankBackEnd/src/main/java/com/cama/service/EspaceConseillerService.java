@@ -32,4 +32,6 @@ public interface EspaceConseillerService {
 	Boolean validateDemande(int idDemande, String typeDemande);
 	
 	Boolean refuseDemande(int idDemande);
+	
+	Hashtable<String, String> dashboard (int idConseiller);
 }

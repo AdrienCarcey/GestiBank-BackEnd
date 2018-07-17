@@ -112,4 +112,10 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	@GetMapping("/conseiller/dashboard/{idConseiller}")
+	public ResponseEntity<Hashtable<String, String>> dashboard(@PathVariable("idConseiller") int idConseiller) {
+		return new ResponseEntity<Hashtable<String, String>>(espaceConseillerService.dashboard(idConseiller), HttpStatus.OK);
+	}
 }

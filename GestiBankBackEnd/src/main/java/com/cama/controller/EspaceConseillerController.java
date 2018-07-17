@@ -35,4 +35,6 @@ public interface EspaceConseillerController {
 	ResponseEntity<Boolean> validateDemande(int idDemande, String typeDemande);
 	
 	ResponseEntity<Boolean> refuseDemande(int idDemande);
+	
+	ResponseEntity<Hashtable<String, String>> dashboard (int idConseiller);
 }

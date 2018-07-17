@@ -19,6 +19,7 @@ import com.cama.model.Compte;
 import com.cama.model.CompteCourantAvecDecouvert;
 import com.cama.model.CompteCourantSansDecouvert;
 import com.cama.model.CompteRemunerateur;
+import com.cama.model.Conseiller;
 import com.cama.model.Demande;
 import com.cama.model.DemandeChequier;
 import com.cama.model.DemandeFermetureCompte;
@@ -329,5 +330,39 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	public Boolean refuseDemande(int idDemande) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Hashtable<String, String> dashboard(int idConseiller) {
+		Hashtable<String, String> dashboard = new Hashtable<String, String>();
+		
+		Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+		int nombreClients = 0;
+		int nombreDemandes = 0;
+		
+		for(Client client: conseiller.getClients()) {
+			if(client.getStatut().equals("ouvert")) {
+				nombreClients = nombreClients+1;	
+			}
+			
+			for(Demande demande: client.getDemandes()) {
+				if(demande.getDateTraitement() == null) {
+					nombreDemandes = nombreDemandes+1;	
+				}
+			}
+		}
+		
+		for(Demande demande: conseiller.getDemandes()) {
+			if(demande.getDateTraitement() == null) {
+				nombreDemandes = nombreDemandes+1;	
+			}
+		}
+		
+		dashboard.put("nom", conseiller.getIdentite().getNom());
+		dashboard.put("prenom", conseiller.getIdentite().getPrenom());
+		dashboard.put("nombreClients", Integer.toString(nombreClients));
+		dashboard.put("nombreDemandes", Integer.toString(nombreDemandes));
+		
+		return dashboard;
 	}
 }
