@@ -18,8 +18,6 @@ public class EspacePublicControllerImpl implements EspacePublicController {
 	
 	@Autowired
 	private EspacePublicService espacePublicService;
-
-
 	
 	@Override
 	@PostMapping("/public/connexion")
@@ -39,7 +37,5 @@ public class EspacePublicControllerImpl implements EspacePublicController {
 	public ResponseEntity<Boolean> createMessagePublic(@RequestBody MessagePublic messagePublic) {
 		return new ResponseEntity<Boolean>(espacePublicService.createMessagePublic(messagePublic), HttpStatus.OK);
 	}
-
-	
 	
 }
