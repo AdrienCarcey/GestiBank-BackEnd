@@ -25,7 +25,14 @@ public class CompteCourantAvecDecouvertDaoImpl extends AbstractDao<Integer, Comp
 
 	@Override
 	public CompteCourantAvecDecouvert findCompteById(int id) {
-		return getByKey(id);
+		String requete = "select c " + "from CompteCourantAvecDecouvert as c " + "where c.idCompte = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (CompteCourantAvecDecouvert) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

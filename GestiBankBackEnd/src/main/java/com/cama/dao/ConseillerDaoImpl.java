@@ -25,8 +25,11 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 
 	@Override
 	public Conseiller findConseillerById(int id) {
+        String requete = "select c " + "from Conseiller as c " + "where c.idUtilisateur = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
         try {
-        	return getByKey(id);
+        	return (Conseiller) query.getSingleResult();	
 		} catch (NoResultException e) {
 			return null;
 		}

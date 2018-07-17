@@ -25,7 +25,14 @@ public class DemandeRIBDaoImpl extends AbstractDao<Integer, DemandeRIB> implemen
 
 	@Override
 	public DemandeRIB findDemandeClientById(int id) {
-		return getByKey(id);
+		String requete = "select d " + "from DemandeRIB as d " + "where d.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (DemandeRIB) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

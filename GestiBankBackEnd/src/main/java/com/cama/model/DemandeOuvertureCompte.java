@@ -14,8 +14,7 @@ public class DemandeOuvertureCompte extends DemandeCompte {
 		super();
 	}
 
-	public DemandeOuvertureCompte(Date dateDemande, Date dateTraitement, String statut, int idCompte,
-			com.cama.model.Compte compte) {
-		super(dateDemande, dateTraitement, statut, idCompte, compte);
+	public DemandeOuvertureCompte(Date dateDemande, Date dateTraitement, String statut, int idCompte) {
+		super(dateDemande, dateTraitement, statut, idCompte);
 	}
 }

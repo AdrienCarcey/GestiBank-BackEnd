@@ -25,7 +25,11 @@ public class ContactDaoImpl extends AbstractDao<Integer, Contact> implements Con
 
 	@Override
 	public Contact findContactById(int id) {
-		return getByKey(id);
+		try {
+			return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

@@ -25,7 +25,14 @@ public class DemandeFermetureCompteDaoImpl extends AbstractDao<Integer, DemandeF
 
 	@Override
 	public DemandeFermetureCompte findDemandeCompteById(int id) {
-		return getByKey(id);
+		String requete = "select d " + "from DemandeFermetureCompte as d " + "where d.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (DemandeFermetureCompte) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

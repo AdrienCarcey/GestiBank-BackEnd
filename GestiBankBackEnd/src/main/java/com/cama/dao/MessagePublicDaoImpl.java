@@ -25,7 +25,14 @@ public class MessagePublicDaoImpl extends AbstractDao<Integer, MessagePublic> im
 
 	@Override
 	public MessagePublic findMessageById(int id) {
-		return getByKey(id);
+		String requete = "select m " + "from MessagePublic as m " + "where m.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (MessagePublic) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

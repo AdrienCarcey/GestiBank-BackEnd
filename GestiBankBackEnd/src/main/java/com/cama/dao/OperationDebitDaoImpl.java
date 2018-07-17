@@ -25,7 +25,14 @@ public class OperationDebitDaoImpl extends AbstractDao<Integer, OperationDebit> 
 
 	@Override
 	public OperationDebit findOperationById(int id) {
-		return getByKey(id);
+		String requete = "select o " + "from OperationDebit as o " + "where o.idOperation = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (OperationDebit) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

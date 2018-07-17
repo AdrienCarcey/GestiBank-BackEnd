@@ -25,7 +25,11 @@ public class IdentiteDaoImpl extends AbstractDao<Integer, Identite> implements I
 
 	@Override
 	public Identite findIdentiteById(int id) {
-		return getByKey(id);
+		try {
+			return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

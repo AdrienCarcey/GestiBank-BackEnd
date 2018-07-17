@@ -8,8 +8,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cama.model.Admin;
-import com.cama.model.Client;
-import com.cama.model.Conseiller;
 
 @Repository("adminDao")
 public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDao {
@@ -27,11 +25,14 @@ public class AdminDaoImpl extends AbstractDao<Integer, Admin> implements AdminDa
 
 	@Override
 	public Admin findAdminById(int id) {
-		try {
-			return getByKey(id);
+		String requete = "select a " + "from Admin as a " + "where c.idUtilisateur = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (Admin) query.getSingleResult();	
 		} catch (NoResultException e) {
 			return null;
-		}			
+		}		
 	}
 
 	@Override

@@ -25,7 +25,14 @@ public class MessageClientDaoImpl extends AbstractDao<Integer, MessageClient> im
 
 	@Override
 	public MessageClient findMessageById(int id) {
-		return getByKey(id);
+		String requete = "select m " + "from MessageClient as m " + "where m.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (MessageClient) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

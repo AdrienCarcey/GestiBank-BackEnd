@@ -8,7 +8,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cama.model.Client;
-import com.cama.model.Conseiller;
 
 @Repository("clientDao")
 public class ClientDaoImpl extends AbstractDao<Integer, Client> implements ClientDao {
@@ -27,11 +26,14 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 
 	@Override
 	public Client findClientById(int id) {
+		String requete = "select c " + "from Client as c " + "where c.idUtilisateur = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
         try {
-        	return getByKey(id);
+        	return (Client) query.getSingleResult();	
 		} catch (NoResultException e) {
 			return null;
-		} 		
+		}		
 	}
 
 	@Override

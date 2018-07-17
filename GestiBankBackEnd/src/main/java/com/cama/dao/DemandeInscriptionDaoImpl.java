@@ -25,7 +25,14 @@ public class DemandeInscriptionDaoImpl extends AbstractDao<Integer, DemandeInscr
 
 	@Override
 	public DemandeInscription findDemandeInscriptionById(int id) {
-		return getByKey(id);
+		String requete = "select d " + "from DemandeInscription as d " + "where d.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (DemandeInscription) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

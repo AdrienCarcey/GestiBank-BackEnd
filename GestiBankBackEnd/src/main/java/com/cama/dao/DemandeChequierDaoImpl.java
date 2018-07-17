@@ -25,7 +25,14 @@ public class DemandeChequierDaoImpl extends AbstractDao<Integer, DemandeChequier
 
 	@Override
 	public DemandeChequier findDemandeClientById(int id) {
-		return getByKey(id);
+		String requete = "select d " + "from DemandeChequier as d " + "where d.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (DemandeChequier) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

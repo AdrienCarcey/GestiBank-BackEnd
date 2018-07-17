@@ -25,7 +25,11 @@ public class DocumentsDaoImpl extends AbstractDao<Integer, Documents> implements
 
 	@Override
 	public Documents findDocumentsById(int id) {
-		return getByKey(id);
+		try {
+			return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

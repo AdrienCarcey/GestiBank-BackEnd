@@ -25,7 +25,14 @@ public class CompteRemunerateurDaoImpl extends AbstractDao<Integer, CompteRemune
 
 	@Override
 	public CompteRemunerateur findCompteById(int id) {
-		return getByKey(id);
+		String requete = "select c " + "from CompteRemunerateur as c " + "where c.idCompte = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (CompteRemunerateur) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

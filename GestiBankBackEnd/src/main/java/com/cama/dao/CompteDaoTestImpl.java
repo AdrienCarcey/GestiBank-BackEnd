@@ -25,7 +25,11 @@ public class CompteDaoTestImpl extends AbstractDao<Integer, CompteTest> implemen
 
 	@Override
 	public CompteTest findCompteById(int idCompte) {
-		return getByKey(idCompte);
+		try {
+			return getByKey(idCompte);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.cama.model.Client;
+import com.cama.model.Compte;
 import com.cama.model.Demande;
 
 public interface EspaceConseillerController {
@@ -13,9 +14,13 @@ public interface EspaceConseillerController {
 	
 	ResponseEntity<Client> findClientAccount(int idClient);
 	
+	ResponseEntity<Boolean> openClientAccount(int idClient);
+	
 	ResponseEntity<Boolean> closeClientAccount(int idClient);
 	
 	ResponseEntity<Boolean> updateClientAccount(int idClient, Client client);
+	
+	ResponseEntity<Compte> findClientCompte(int idCompte);
 	
 	ResponseEntity<Boolean> openClientCompte(int idCompte);
 	

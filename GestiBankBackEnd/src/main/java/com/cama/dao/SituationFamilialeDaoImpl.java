@@ -25,7 +25,11 @@ public class SituationFamilialeDaoImpl extends AbstractDao<Integer, SituationFam
 
 	@Override
 	public SituationFamiliale findSituationFamilialeById(int id) {
-		return getByKey(id);
+		try {
+			return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

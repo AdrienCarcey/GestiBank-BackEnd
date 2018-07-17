@@ -25,7 +25,11 @@ public class AdresseDaoImpl extends AbstractDao<Integer, Adresse> implements Adr
 
 	@Override
 	public Adresse findAdresseById(int id) {
-		return getByKey(id);
+		try {
+			return getByKey(id);
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

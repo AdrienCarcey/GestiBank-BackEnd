@@ -25,7 +25,14 @@ public class DemandeOuvertureCompteDaoImpl extends AbstractDao<Integer, DemandeO
 
 	@Override
 	public DemandeOuvertureCompte findDemandeCompteById(int id) {
-		return getByKey(id);
+		String requete = "select d " + "from DemandeOuvertureCompte as d " + "where d.idDemande = :id";
+        Query query = getEntityManager().createQuery(requete);
+        query.setParameter("id", id);
+        try {
+        	return (DemandeOuvertureCompte) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
