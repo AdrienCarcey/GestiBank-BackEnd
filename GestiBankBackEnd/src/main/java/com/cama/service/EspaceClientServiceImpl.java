@@ -1,5 +1,6 @@
 package com.cama.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,8 +16,11 @@ import com.cama.dao.ConseillerDao;
 import com.cama.model.Client;
 import com.cama.model.Compte;
 import com.cama.model.Conseiller;
+import com.cama.model.DemandeChequier;
+import com.cama.model.DemandeRIB;
 import com.cama.model.MessageClient;
 import com.cama.model.OperationBancaire;
+import com.cama.model.OperationDebit;
 
 
 @Service("espaceClientService")
@@ -51,20 +55,43 @@ public class EspaceClientServiceImpl implements EspaceClientService {
 
 	
 	@Override
+	public Compte findClientCompte(int idCompte) {
+		if(compteCourantAvecDecouvertDao.findCompteById(idCompte) != null) {
+			return compteCourantAvecDecouvertDao.findCompteById(idCompte);
+		}
+		
+		else if(compteCourantSansDecouvertDao.findCompteById(idCompte) != null) {
+			return compteCourantSansDecouvertDao.findCompteById(idCompte);
+		}
+		
+		else if(compteRemunerateurDao.findCompteById(idCompte) != null) {			
+			return compteRemunerateurDao.findCompteById(idCompte);
+		}
+		
+		else {
+			return null;
+		}
+	}
+	
+	
+	@Override
 	public List<OperationBancaire> findOperationsById(int idCompte) {
 		
-		if (compteCourantAvecDecouvertDao.findCompteById(idCompte) != null) {
-			return compteCourantAvecDecouvertDao.findCompteById(idCompte).getOperationsBancaires();
-		} else if (compteCourantSansDecouvertDao.findCompteById(idCompte) != null) {
-			return compteCourantSansDecouvertDao.findCompteById(idCompte).getOperationsBancaires();
-		} else if (compteRemunerateurDao.findCompteById(idCompte) != null) {			
-			return compteRemunerateurDao.findCompteById(idCompte).getOperationsBancaires();
+		if (findClientCompte(idCompte) != null) {
+			List<OperationBancaire> operationsBancaires = new ArrayList<OperationBancaire>();
+			for(OperationBancaire operation:findClientCompte(idCompte).getOperationsBancaires()) {
+				if(operation instanceof OperationDebit) {
+					operation.setMontantOperation(-operation.getMontantOperation());
+				}
+				operationsBancaires.add(operation);
+			}
+			return operationsBancaires;
 		} else {
 			return null;
 		}
 	}
-
-
+	
+	
 	@Override
 	public Boolean createMessageClient(MessageClient messageClient) {
 		
@@ -79,6 +106,24 @@ public class EspaceClientServiceImpl implements EspaceClientService {
 	@Override
 	public Client getClientById(int idClient) {
 		return clientDao.findClientById(idClient);
+	}
+
+
+	@Override
+	public Boolean createDemandeChequier(DemandeChequier demandeChequier, int idClient) {
+		Client client = clientDao.findClientById(idClient);
+		client.getDemandes().add(demandeChequier);
+		clientDao.updateClient(client);
+		return true;
+	}
+
+
+	@Override
+	public Boolean createDemandeRib(DemandeRIB demandeRib, int idClient) {
+		Client client = clientDao.findClientById(idClient);
+		client.getDemandes().add(demandeRib);
+		clientDao.updateClient(client);
+		return true;
 	}
 	
 	

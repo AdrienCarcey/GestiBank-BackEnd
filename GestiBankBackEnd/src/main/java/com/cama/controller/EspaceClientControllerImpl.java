@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cama.model.Client;
 import com.cama.model.Compte;
+import com.cama.model.DemandeChequier;
+import com.cama.model.DemandeRIB;
 import com.cama.model.MessageClient;
 import com.cama.model.OperationBancaire;
 import com.cama.service.EspaceClientService;
@@ -45,6 +47,20 @@ public class EspaceClientControllerImpl implements EspaceClientController {
 	@GetMapping("/client/{idClient}")
 	public ResponseEntity<Client> getClientById(@PathVariable("idClient") int idClient) {
 		return new ResponseEntity<Client>(espaceClientService.getClientById(idClient), HttpStatus.OK);
+	}
+
+	@Override
+	@PostMapping("/client/demandechequier/{idClient}")
+	public ResponseEntity<Boolean> createDemandeChequier(@RequestBody DemandeChequier demandeChequier, 
+			@PathVariable("idClient") int idClient) {
+		return new ResponseEntity<Boolean>(espaceClientService.createDemandeChequier(demandeChequier, idClient), HttpStatus.OK);
+	}
+
+	@Override
+	@PostMapping("/client/demanderib/{idClient}")
+	public ResponseEntity<Boolean> createDemandeRib(@RequestBody DemandeRIB demandeRib, 
+			@PathVariable("idClient") int idClient) {
+		return new ResponseEntity<Boolean>(espaceClientService.createDemandeRib(demandeRib, idClient), HttpStatus.OK);
 	}
 
 }
