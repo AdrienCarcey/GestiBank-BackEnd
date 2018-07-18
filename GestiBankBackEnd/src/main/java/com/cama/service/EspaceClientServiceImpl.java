@@ -68,21 +68,9 @@ public class EspaceClientServiceImpl implements EspaceClientService {
 	@Override
 	public Boolean createMessageClient(MessageClient messageClient) {
 		
-		List<Conseiller> conseillers = conseillerDao.findAllConseillers();
-		
-		int idConseiller = 0;
-		for (Conseiller c:conseillers) {
-			List<Client> clients = c.getClients();
-			for (Client cl:clients) {
-				if (cl.getIdUtilisateur() == messageClient.getIdClient()) {
-					idConseiller = c.getIdUtilisateur();
-				}
-			}
-		}
-		
-		Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
-		conseiller.getDemandes().add(messageClient);
-		conseillerDao.updateConseiller(conseiller);		
+		Client client = clientDao.findClientById(messageClient.getIdClient());
+		client.getDemandes().add(messageClient);
+		clientDao.updateClient(client);		
 		
 		return true;
 	}

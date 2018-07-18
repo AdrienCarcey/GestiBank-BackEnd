@@ -1,6 +1,7 @@
 package com.cama.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else {
 			Client client = clientDao.findClientById(idClient);
 			client.setStatut("ouvert");
+			client.setDateFermetureCompte(null);
 			clientDao.updateClient(client);
 			
 			return true;
@@ -81,6 +83,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else {
 			Client client = clientDao.findClientById(idClient);
 			client.setStatut("ferme");
+			client.setDateFermetureCompte(new Date());
 			clientDao.updateClient(client);
 			
 			return true;
