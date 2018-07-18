@@ -5,5 +5,6 @@
   <con:project name="EspaceClientController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceClientController-soapui-project.xml</con:project>
   <con:project name="EspaceConseillerController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceConseillerController-soapui-project.xml</con:project>
   <con:project name="EspacePublicController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspacePublicController-soapui-project.xml</con:project>
+  <con:project name="EspaceAdminController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceAdminController-soapui-project.xml</con:project>
   <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>

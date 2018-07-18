@@ -120,6 +120,14 @@ INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `
 INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteCourantAvecDecouvert', '11', '0', false, '0', NULL, '0', '0');
 INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteRemunerateur', '12', '0', false, '2', NULL, '0', '0');
 
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteCourantSansDecouvert', '13', '0', true, '0', 'rib5', '0', '0');
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteCourantAvecDecouvert', '14', '0', false, '0', NULL, '0', '0');
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteRemunerateur', '15', '0', false, '2', NULL, '0', '0');
+
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteCourantSansDecouvert', '16', '0', true, '0', 'rib5', '0', '0');
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteCourantAvecDecouvert', '17', '0', false, '0', NULL, '0', '0');
+INSERT INTO `gestibankdb`.`compte` (`heritage`, `idCompte`, `solde`, `statut`, `tauxRenumeration`, `rib`, `entreeMensuelle`, `montantDecouvert`) VALUES ('compteRemunerateur', '18', '0', false, '2', NULL, '0', '0');
+
 -- Table "OperationBancaire"
 INSERT INTO `gestibankdb`.`operationbancaire` (`heritage`, `idOperation`, `dateOperation`, `libelleOperation`, `montantOperation`) VALUES ('operationCredit', '1', '2018-07-09 00:00:00', 'salaire', '3000');
 INSERT INTO `gestibankdb`.`operationbancaire` (`heritage`, `idOperation`, `dateOperation`, `libelleOperation`, `montantOperation`) VALUES ('operationDebit', '2', '2018-07-10 00:00:00', 'ordinateur', '500');
@@ -282,6 +290,14 @@ INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `co
 INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('7', '10');
 INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('7', '11');
 INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('7', '12');
+
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('8', '13');
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('8', '14');
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('8', '15');
+
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('9', '16');
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('9', '17');
+INSERT INTO `gestibankdb`.`utilisateur_compte` (`Utilisateur_idUtilisateur`, `comptes_idCompte`) VALUES ('9', '18');
 
 -- Table "Compte_OperationBancaire"
 INSERT INTO `gestibankdb`.`compte_operationbancaire` (`Compte_idCompte`, `operationsbancaires_idOperation`) VALUES ('1', '1');
