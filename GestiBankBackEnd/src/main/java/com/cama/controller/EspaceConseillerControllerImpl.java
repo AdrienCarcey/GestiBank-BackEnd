@@ -101,16 +101,14 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 
 	@Override
 	@PostMapping("/conseiller/demandes/{idDemande}")
-	public ResponseEntity<Boolean> validateDemande(@PathVariable("idDemande") int idDemande, @RequestBody String typeDemande) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Boolean> validateDemande(@PathVariable("idDemande") int idDemande, @RequestBody int idConseiller) {
+		return new ResponseEntity<Boolean>(espaceConseillerService.validateDemande(idDemande, idConseiller), HttpStatus.OK);
 	}
 
 	@Override
 	@DeleteMapping("/conseiller/demandes/{idDemande}")
 	public ResponseEntity<Boolean> refuseDemande(@PathVariable("idDemande") int idDemande) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ResponseEntity<Boolean>(espaceConseillerService.refuseDemande(idDemande), HttpStatus.OK);
 	}
 	
 	@Override

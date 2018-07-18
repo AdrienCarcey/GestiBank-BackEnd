@@ -29,7 +29,7 @@ public interface EspaceConseillerService {
 	
 	Hashtable<String, List> findAllDemandes(int idConseiller);
 	
-	Boolean validateDemande(int idDemande, String typeDemande);
+	Boolean validateDemande(int idDemande, int idConseiller);
 	
 	Boolean refuseDemande(int idDemande);
 	

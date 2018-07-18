@@ -32,7 +32,7 @@ public interface EspaceConseillerController {
 	
 	ResponseEntity<Hashtable<String, List>> findAllDemandes(int idConseiller);
 	
-	ResponseEntity<Boolean> validateDemande(int idDemande, String typeDemande);
+	ResponseEntity<Boolean> validateDemande(int idDemande, int idConseiller);
 	
 	ResponseEntity<Boolean> refuseDemande(int idDemande);
 	

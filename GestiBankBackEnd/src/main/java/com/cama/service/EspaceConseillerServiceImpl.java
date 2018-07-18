@@ -15,6 +15,14 @@ import com.cama.dao.CompteCourantAvecDecouvertDao;
 import com.cama.dao.CompteCourantSansDecouvertDao;
 import com.cama.dao.CompteRemunerateurDao;
 import com.cama.dao.ConseillerDao;
+import com.cama.dao.DemandeChequierDao;
+import com.cama.dao.DemandeFermetureCompteDao;
+import com.cama.dao.DemandeInscriptionDao;
+import com.cama.dao.DemandeModificationDonneesDao;
+import com.cama.dao.DemandeOuvertureCompteDao;
+import com.cama.dao.DemandeRIBDao;
+import com.cama.dao.MessageClientDao;
+import com.cama.dao.MessagePublicDao;
 import com.cama.model.Client;
 import com.cama.model.Compte;
 import com.cama.model.CompteCourantAvecDecouvert;
@@ -47,6 +55,22 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	private CompteCourantSansDecouvertDao compteCourantSansDecouvertDao;
 	@Autowired
 	private CompteRemunerateurDao compteRemunerateurDao;
+	@Autowired
+	private DemandeChequierDao demandeChequierDao;
+	@Autowired
+	private DemandeFermetureCompteDao demandeFermetureCompteDao;
+	@Autowired
+	private DemandeInscriptionDao demandeInscriptionDao;
+	@Autowired
+	private DemandeModificationDonneesDao demandeModificationDonneesDao;
+	@Autowired
+	private DemandeOuvertureCompteDao demandeOuvertureCompteDao;
+	@Autowired
+	private DemandeRIBDao demandeRIBDao;
+	@Autowired
+	private MessageClientDao messageClientDao;
+	@Autowired
+	private MessagePublicDao messagePublicDao;
 	
 	@Override
 	public List<Client> findAllClients(int idConseiller) {
@@ -324,15 +348,131 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	}
 
 	@Override
-	public Boolean validateDemande(int idDemande, String typeDemande) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean validateDemande(int idDemande, int idConseiller) {		
+		if(demandeInscriptionDao.findDemandeInscriptionById(idDemande) != null) {
+			DemandeInscription demande = demandeInscriptionDao.findDemandeInscriptionById(idDemande);
+			
+			Client client = demande.getClient();
+			Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+			conseiller.getClients().add(client);
+			conseillerDao.updateConseiller(conseiller);
+			
+			demande.setStatut("demande acceptee");
+			demandeInscriptionDao.updateDemandeInscription(demande);
+			
+			return true;
+		}
+		
+		else if(demandeModificationDonneesDao.findDemandeClientById(idDemande) != null) {
+			return true;
+		}
+		
+		else if(demandeChequierDao.findDemandeClientById(idDemande) != null) {
+			DemandeChequier demande = demandeChequierDao.findDemandeClientById(idDemande);
+			demande.setStatut("demande acceptee");
+			demandeChequierDao.updateDemandeClient(demande);
+			
+			return true;	
+		}
+		
+		else if(demandeRIBDao.findDemandeClientById(idDemande) != null) {
+			DemandeRIB demande = demandeRIBDao.findDemandeClientById(idDemande);
+			demande.setStatut("demande acceptee");
+			demandeRIBDao.updateDemandeClient(demande);
+			
+			return true;
+		}
+		
+		else if(demandeOuvertureCompteDao.findDemandeCompteById(idDemande) != null) {
+			DemandeOuvertureCompte demande = demandeOuvertureCompteDao.findDemandeCompteById(idDemande);
+			demande.setStatut("demande acceptee");
+			demandeOuvertureCompteDao.updateDemandeCompte(demande);
+			
+			return true;
+		}
+		
+		else if(demandeFermetureCompteDao.findDemandeCompteById(idDemande) != null) {
+			DemandeFermetureCompte demande = demandeFermetureCompteDao.findDemandeCompteById(idDemande);
+			demande.setStatut("demande acceptee");
+			demandeFermetureCompteDao.updateDemandeCompte(demande);
+			
+			return true;
+		}
+		
+		else if(messageClientDao.findMessageById(idDemande) != null) {
+			MessageClient message = messageClientDao.findMessageById(idDemande);
+			message.setStatut("message repondu");
+			messageClientDao.updateMessage(message);
+			
+			return true;
+		}
+		
+		else if(messagePublicDao.findMessageById(idDemande) != null) {
+			MessagePublic message = messagePublicDao.findMessageById(idDemande);
+			message.setStatut("message repondu");
+			messagePublicDao.updateMessage(message);
+			
+			return true;
+		}
+		
+		else {
+			return false;
+		}				
 	}
 
 	@Override
 	public Boolean refuseDemande(int idDemande) {
-		// TODO Auto-generated method stub
-		return null;
+		if(demandeInscriptionDao.findDemandeInscriptionById(idDemande) != null) {
+			DemandeInscription demande = demandeInscriptionDao.findDemandeInscriptionById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeInscriptionDao.updateDemandeInscription(demande);
+			
+			return true;
+		}
+		
+		else if(demandeModificationDonneesDao.findDemandeClientById(idDemande) != null) {
+			DemandeModificationDonnees demande = demandeModificationDonneesDao.findDemandeClientById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeModificationDonneesDao.updateDemandeClient(demande);
+			
+			return true;
+		}
+		
+		else if(demandeChequierDao.findDemandeClientById(idDemande) != null) {
+			DemandeChequier demande = demandeChequierDao.findDemandeClientById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeChequierDao.updateDemandeClient(demande);
+			
+			return true;	
+		}
+		
+		else if(demandeRIBDao.findDemandeClientById(idDemande) != null) {
+			DemandeRIB demande = demandeRIBDao.findDemandeClientById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeRIBDao.updateDemandeClient(demande);
+			
+			return true;
+		}
+		
+		else if(demandeOuvertureCompteDao.findDemandeCompteById(idDemande) != null) {
+			DemandeOuvertureCompte demande = demandeOuvertureCompteDao.findDemandeCompteById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeOuvertureCompteDao.updateDemandeCompte(demande);
+			
+			return true;
+		}
+		
+		else if(demandeFermetureCompteDao.findDemandeCompteById(idDemande) != null) {
+			DemandeFermetureCompte demande = demandeFermetureCompteDao.findDemandeCompteById(idDemande);
+			demande.setStatut("demande refusee");
+			demandeFermetureCompteDao.updateDemandeCompte(demande);
+			
+			return true;
+		}
+		
+		else {
+			return false;
+		}				
 	}
 	
 	@Override
