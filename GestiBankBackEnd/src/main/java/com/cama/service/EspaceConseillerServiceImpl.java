@@ -78,6 +78,11 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	}
 
 	@Override
+	public Client findClientByName(String nomUtilisateur) {
+		return clientDao.findClientByName(nomUtilisateur);
+	}
+	
+	@Override
 	public Client findClientAccount(int idClient) {
 		return clientDao.findClientById(idClient);
 	}
@@ -348,28 +353,44 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 	}
 
 	@Override
-	public Boolean validateDemande(int idDemande, int idConseiller) {		
+	public Boolean validateDemande(int idDemande, String idConseiller) {		
 		if(demandeInscriptionDao.findDemandeInscriptionById(idDemande) != null) {
 			DemandeInscription demande = demandeInscriptionDao.findDemandeInscriptionById(idDemande);
 			
 			Client client = demande.getClient();
-			Conseiller conseiller = conseillerDao.findConseillerById(idConseiller);
+			client.setStatut("ouvert");
+			client.setDateOuvertureCompte(new Date());
+			Conseiller conseiller = conseillerDao.findConseillerById(Integer.parseInt(idConseiller));
 			conseiller.getClients().add(client);
 			conseillerDao.updateConseiller(conseiller);
 			
 			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
 			demandeInscriptionDao.updateDemandeInscription(demande);
 			
 			return true;
 		}
 		
 		else if(demandeModificationDonneesDao.findDemandeClientById(idDemande) != null) {
+			DemandeModificationDonnees demande = demandeModificationDonneesDao.findDemandeClientById(idDemande);
+			
+			int idClient = findClientByName(demande.getClient().getNomUtilisateur()).getIdUtilisateur();
+			Client client = demande.getClient();
+			
+			updateClientAccount(idClient, client);
+			
+			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
+			demandeModificationDonneesDao.updateDemandeClient(demande);
+			
+			
 			return true;
 		}
 		
 		else if(demandeChequierDao.findDemandeClientById(idDemande) != null) {
 			DemandeChequier demande = demandeChequierDao.findDemandeClientById(idDemande);
 			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
 			demandeChequierDao.updateDemandeClient(demande);
 			
 			return true;	
@@ -378,6 +399,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeRIBDao.findDemandeClientById(idDemande) != null) {
 			DemandeRIB demande = demandeRIBDao.findDemandeClientById(idDemande);
 			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
 			demandeRIBDao.updateDemandeClient(demande);
 			
 			return true;
@@ -386,6 +408,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeOuvertureCompteDao.findDemandeCompteById(idDemande) != null) {
 			DemandeOuvertureCompte demande = demandeOuvertureCompteDao.findDemandeCompteById(idDemande);
 			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
 			demandeOuvertureCompteDao.updateDemandeCompte(demande);
 			
 			return true;
@@ -394,6 +417,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeFermetureCompteDao.findDemandeCompteById(idDemande) != null) {
 			DemandeFermetureCompte demande = demandeFermetureCompteDao.findDemandeCompteById(idDemande);
 			demande.setStatut("demande acceptee");
+			demande.setDateTraitement(new Date());
 			demandeFermetureCompteDao.updateDemandeCompte(demande);
 			
 			return true;
@@ -402,6 +426,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(messageClientDao.findMessageById(idDemande) != null) {
 			MessageClient message = messageClientDao.findMessageById(idDemande);
 			message.setStatut("message repondu");
+			message.setDateTraitement(new Date());
 			messageClientDao.updateMessage(message);
 			
 			return true;
@@ -410,6 +435,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(messagePublicDao.findMessageById(idDemande) != null) {
 			MessagePublic message = messagePublicDao.findMessageById(idDemande);
 			message.setStatut("message repondu");
+			message.setDateTraitement(new Date());
 			messagePublicDao.updateMessage(message);
 			
 			return true;
@@ -425,6 +451,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		if(demandeInscriptionDao.findDemandeInscriptionById(idDemande) != null) {
 			DemandeInscription demande = demandeInscriptionDao.findDemandeInscriptionById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeInscriptionDao.updateDemandeInscription(demande);
 			
 			return true;
@@ -433,6 +460,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeModificationDonneesDao.findDemandeClientById(idDemande) != null) {
 			DemandeModificationDonnees demande = demandeModificationDonneesDao.findDemandeClientById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeModificationDonneesDao.updateDemandeClient(demande);
 			
 			return true;
@@ -441,6 +469,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeChequierDao.findDemandeClientById(idDemande) != null) {
 			DemandeChequier demande = demandeChequierDao.findDemandeClientById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeChequierDao.updateDemandeClient(demande);
 			
 			return true;	
@@ -449,6 +478,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeRIBDao.findDemandeClientById(idDemande) != null) {
 			DemandeRIB demande = demandeRIBDao.findDemandeClientById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeRIBDao.updateDemandeClient(demande);
 			
 			return true;
@@ -457,6 +487,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeOuvertureCompteDao.findDemandeCompteById(idDemande) != null) {
 			DemandeOuvertureCompte demande = demandeOuvertureCompteDao.findDemandeCompteById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeOuvertureCompteDao.updateDemandeCompte(demande);
 			
 			return true;
@@ -465,6 +496,7 @@ public class EspaceConseillerServiceImpl implements EspaceConseillerService {
 		else if(demandeFermetureCompteDao.findDemandeCompteById(idDemande) != null) {
 			DemandeFermetureCompte demande = demandeFermetureCompteDao.findDemandeCompteById(idDemande);
 			demande.setStatut("demande refusee");
+			demande.setDateTraitement(new Date());
 			demandeFermetureCompteDao.updateDemandeCompte(demande);
 			
 			return true;

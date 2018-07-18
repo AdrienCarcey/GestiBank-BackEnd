@@ -11,6 +11,8 @@ public interface EspaceConseillerService {
 	
 	List<Client> findAllClients(int idConseiller);
 	
+	Client findClientByName(String nomUtilisateur);
+	
 	Client findClientAccount(int idClient);
 	
 	Boolean openClientAccount(int idClient);
@@ -25,13 +27,13 @@ public interface EspaceConseillerService {
 	
 	Boolean closeClientCompte(int idCompte);
 	
-	List<OperationBancaire> findCompteOperation (int idCompte);
+	List<OperationBancaire> findCompteOperation(int idCompte);
 	
 	Hashtable<String, List> findAllDemandes(int idConseiller);
 	
-	Boolean validateDemande(int idDemande, int idConseiller);
+	Boolean validateDemande(int idDemande, String idConseiller);
 	
 	Boolean refuseDemande(int idDemande);
 	
-	Hashtable<String, String> dashboard (int idConseiller);
+	Hashtable<String, String> dashboard(int idConseiller);
 }

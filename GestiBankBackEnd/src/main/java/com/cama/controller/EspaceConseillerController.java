@@ -14,6 +14,8 @@ public interface EspaceConseillerController {
 	
 	ResponseEntity<List<Client>> findAllClients(int idConseiller);
 	
+	ResponseEntity<Client> findClientByName(String nomUtilisateur);
+	
 	ResponseEntity<Client> findClientAccount(int idClient);
 	
 	ResponseEntity<Boolean> openClientAccount(int idClient);
@@ -32,7 +34,7 @@ public interface EspaceConseillerController {
 	
 	ResponseEntity<Hashtable<String, List>> findAllDemandes(int idConseiller);
 	
-	ResponseEntity<Boolean> validateDemande(int idDemande, int idConseiller);
+	ResponseEntity<Boolean> validateDemande(int idDemande, String idConseiller);
 	
 	ResponseEntity<Boolean> refuseDemande(int idDemande);
 	

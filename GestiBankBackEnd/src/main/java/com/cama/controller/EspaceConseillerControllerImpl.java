@@ -37,6 +37,16 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 	}
 
 	@Override
+	@PostMapping("/conseiller")
+	public ResponseEntity<Client> findClientByName(@RequestBody String nomUtilisateur) {
+		if(espaceConseillerService.findClientByName(nomUtilisateur) == null) {
+			return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Client>(espaceConseillerService.findClientByName(nomUtilisateur), HttpStatus.OK);
+	}
+	
+	@Override
 	@GetMapping("/conseiller/clients/{idClient}")
 	public ResponseEntity<Client> findClientAccount(@PathVariable("idClient") int idClient) {
 		if(espaceConseillerService.findClientAccount(idClient) == null) {
@@ -101,7 +111,7 @@ public class EspaceConseillerControllerImpl implements EspaceConseillerControlle
 
 	@Override
 	@PostMapping("/conseiller/demandes/{idDemande}")
-	public ResponseEntity<Boolean> validateDemande(@PathVariable("idDemande") int idDemande, @RequestBody int idConseiller) {
+	public ResponseEntity<Boolean> validateDemande(@PathVariable("idDemande") int idDemande, @RequestBody String idConseiller) {
 		return new ResponseEntity<Boolean>(espaceConseillerService.validateDemande(idDemande, idConseiller), HttpStatus.OK);
 	}
 
