@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-workspace name="GestiBankSoapTest" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
-  <con:project name="ClientControllerTest">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/ClientControllerTest-soapui-project.xml</con:project>
-  <con:project name="EspaceClientController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceClientController-soapui-project.xml</con:project>
-  <con:project name="EspaceConseillerController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceConseillerController-soapui-project.xml</con:project>
-  <con:project name="EspacePublicController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspacePublicController-soapui-project.xml</con:project>
-  <con:project name="EspaceAdminController">C:/Users/gk/Desktop/ACA/GestiBank/GestiBank-BackEnd/SoapTest/EspaceAdminController-soapui-project.xml</con:project>
+  <con:project name="EspaceAdminController">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/EspaceAdminController-soapui-project.xml</con:project>
+  <con:project name="EspaceClientController">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/EspaceClientController-soapui-project.xml</con:project>
+  <con:project name="EspaceConseillerController">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/EspaceConseillerController-soapui-project.xml</con:project>
+  <con:project name="EspacePublicController">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/EspacePublicController-soapui-project.xml</con:project>
+  <con:project name="ClientControllerTest">/Users/Adrien/Documents/Adrien/Travail/Global Knowledge/GestiBank/GestiBank-BackEnd/SoapTest/ClientControllerTest-soapui-project.xml</con:project>
   <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>

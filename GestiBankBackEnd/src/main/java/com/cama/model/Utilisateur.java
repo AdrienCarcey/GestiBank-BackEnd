@@ -34,7 +34,7 @@ public abstract class Utilisateur {
 	private Identite identite;
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Contact contact;
-	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=false, fetch=FetchType.EAGER)
 	private List<Demande> demandes;
 	
 	//Constructors

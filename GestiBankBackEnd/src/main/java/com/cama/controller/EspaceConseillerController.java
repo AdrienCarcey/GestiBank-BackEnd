@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 
 import com.cama.model.Client;
 import com.cama.model.Compte;
-import com.cama.model.Demande;
 import com.cama.model.OperationBancaire;
 
 public interface EspaceConseillerController {

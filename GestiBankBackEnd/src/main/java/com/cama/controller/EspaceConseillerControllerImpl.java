@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cama.model.Client;
 import com.cama.model.Compte;
-import com.cama.model.Demande;
 import com.cama.model.OperationBancaire;
 import com.cama.service.EspaceConseillerService;
 
