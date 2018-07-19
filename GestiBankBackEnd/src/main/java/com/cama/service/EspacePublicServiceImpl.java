@@ -1,5 +1,6 @@
 package com.cama.service;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -13,6 +14,10 @@ import com.cama.dao.ClientDao;
 import com.cama.dao.ConseillerDao;
 import com.cama.model.Admin;
 import com.cama.model.Client;
+import com.cama.model.Compte;
+import com.cama.model.CompteCourantAvecDecouvert;
+import com.cama.model.CompteCourantSansDecouvert;
+import com.cama.model.CompteRemunerateur;
 import com.cama.model.Conseiller;
 import com.cama.model.Demande;
 import com.cama.model.DemandeInscription;
@@ -37,10 +42,28 @@ public class EspacePublicServiceImpl implements EspacePublicService {
 	
 	@Override
 	public Boolean createDemandeInscription(DemandeInscription demandeInscription) {
+		List<Compte> comptesBancaires = new ArrayList<Compte>();
+		
+		CompteCourantSansDecouvert ccsd = new CompteCourantSansDecouvert();
+		CompteCourantAvecDecouvert ccad = new CompteCourantAvecDecouvert();
+		CompteRemunerateur cr = new CompteRemunerateur();
+		
+		ccsd.setStatut(true);
+		ccsd.setRib("rib");
+		
+		ccad.setStatut(false);
+		cr.setStatut(false);
+		
+		comptesBancaires.add(ccsd);
+		comptesBancaires.add(ccad);
+		comptesBancaires.add(cr);
+		
+		demandeInscription.getClient().setComptes(comptesBancaires);
+		
 		Admin admin = adminDao.findAdminById(1);
 		admin.getDemandes().add(demandeInscription);
 		adminDao.updateAdmin(admin);
-		//demandeInscriptionDao.createDemandeInscription(demandeInscription);
+		
 		return true;
 	}
 
